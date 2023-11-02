@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('maintenancecontracts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('signatureDate');
             $table->date('dueDate'); //date échéance
 

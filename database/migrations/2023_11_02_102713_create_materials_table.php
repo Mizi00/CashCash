@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('saleDate');
             $table->date('installationDate');
             $table->float('salePrice', 10);
