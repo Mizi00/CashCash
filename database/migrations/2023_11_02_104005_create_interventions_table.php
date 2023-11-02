@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('interventions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->dateTime('dateTimeVisit');
+            
+            //clés étrangères
+            $table->integer('numClient');
+            $table->integer('numMatricule');
+
+            //relation avec les clés étrangères
+            $table->foreign('numClient')->reference('id')->on('customers');
+            $table->foreign('numMatricule')->reference('id')->on('employees');
         });
     }
 
