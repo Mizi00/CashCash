@@ -34,7 +34,7 @@ class ClientFactory extends Factory
             'mailAddress' => fake()->unique()->safeEmail(),
             'kmDistance' => rand(1, 1000),
             'travelTime' => rand(1, 60),
-            'agencyNum' => 1
+            'agencyNum' => rand(1, 10)
          ];
     }
 }
