@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materialstypes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increment('id');
+            $table->string('typeLabel');
         });
     }
 
