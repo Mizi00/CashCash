@@ -12,8 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->date('saleDate');
+            $table->date('installationDate');
+            $table->float('salePrice', 10);
+            $table->string('location', 20);
+
+            //clés étrangères
+            $table->integer('referenceInterne');
+            $table->integer('numClient');
+            $table->integer('numContract');
+
+            //relations avec les tables étrangères
+            $table->foreign('referenceInterne')->reference('id')->on('materialstypes');
+            $table->foreign('numClient')->reference('id')->on('materialstypes');
+            $table->foreign('numContract')->reference('id')->on('materialstypes');
+
+
         });
     }
 

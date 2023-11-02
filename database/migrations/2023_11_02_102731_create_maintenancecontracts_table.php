@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('maintenancecontracts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->date('signatureDate');
+            $table->date('dueDate'); //date échéance
+
+            //clés étrangères
+            $table->integer('numClient');
+
+            //relation avec la clé étrangère
+            $table->foreign('numClient')->reference('id')->on('customers');
+
         });
     }
 
