@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('technicians', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id'); //clé primaire étrangère
+            $table->string('qualification', 100);
+
+            //clé étrangère
+            $table->integer('numAgence');
+
+            //relations clés étrangères
+            $table->foreign('id')->reference('id')->on('employees');
+            $table->foreign('numAgence')->reference('id')->on('agencies');
+
         });
     }
 
