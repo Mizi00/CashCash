@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string('location', 20);
 
             //clés étrangères
-            $table->integer('referenceInterne');
-            $table->integer('numClient');
-            $table->integer('numContract');
+            $table->string('internalRef');
+            $table->integer('clientNum');
+            $table->integer('contractNum');
 
             //relations avec les tables étrangères
-            $table->foreign('referenceInterne')->references('id')->on('materialstypes');
-            $table->foreign('numClient')->references('id')->on('materialstypes');
-            $table->foreign('numContract')->references('id')->on('materialstypes');
+            $table->foreign('internalRef')->references('id')->on('materialstypes');
+            $table->foreign('clientNum')->references('id')->on('clients');
+            $table->foreign('contractNum')->references('id')->on('maintenancecontracts');
 
 
         });

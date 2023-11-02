@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('helpers', function (Blueprint $table) {
-            $table->increments('id'); //clé primaire étrangère
+            $table->id(); //clé primaire étrangère
 
             //relation avec la clé etrangère
             $table->foreign('id')->references('id')->on('employees');

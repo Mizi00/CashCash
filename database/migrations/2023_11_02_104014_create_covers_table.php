@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('commentWorks', 700);
 
             //clés étrangères
-            $table->integer('numSerie');
-            $table->integer('numFiche');
+            $table->integer('serialNum');
+            $table->integer('sheetNum');
 
             //relation avec les tables
-            $table->foreign('numSerie')->references('id')->on('materials');
-            $table->foreign('numFiche')->references('id')->on('interventions');
+            $table->foreign('serialNum')->references('id')->on('materials');
+            $table->foreign('sheetNum')->references('id')->on('interventions');
+            $table->primary(['serialNum,sheetNum']); //definition de la clé primaire
         });
     }
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('lastName', 40);
             $table->string('firstName', 40);
@@ -24,8 +24,11 @@ return new class extends Migration
             $table->string('mailAddress', 255);
             $table->float('kmDistance', 10);
             $table->unsignedInteger('travelTime', 5);
+
+            //clé étrangères
             $table->integer('agencyNum');
 
+            //relation avec les tables
             $table->foreign('agencyNum')->references('id')->on('agencies');
 
         });
@@ -36,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('clients');
     }
 };

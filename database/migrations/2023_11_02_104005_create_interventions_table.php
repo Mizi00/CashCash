@@ -16,12 +16,12 @@ return new class extends Migration
             $table->dateTime('dateTimeVisit');
             
             //clés étrangères
-            $table->integer('numClient');
-            $table->integer('numMatricule');
+            $table->integer('clientNum');
+            $table->integer('registrationNum');
 
             //relation avec les clés étrangères
-            $table->foreign('numClient')->references('id')->on('customers');
-            $table->foreign('numMatricule')->references('id')->on('employees');
+            $table->foreign('clientNum')->references('id')->on('clients');
+            $table->foreign('registrationNum')->references('id')->on('employees');
         });
     }
 

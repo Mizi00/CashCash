@@ -17,10 +17,10 @@ return new class extends Migration
             $table->date('dueDate'); //date échéance
 
             //clés étrangères
-            $table->integer('numClient');
+            $table->integer('clientNum');
 
             //relation avec la clé étrangère
-            $table->foreign('numClient')->references('id')->on('customers');
+            $table->foreign('clientNum')->references('id')->on('clients');
 
         });
     }
