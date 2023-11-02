@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('qualification', 100);
 
             //clé étrangère
-            $table->integer('numAgence');
+            $table->integer('agencyNum');
 
             //relations clés étrangères
             

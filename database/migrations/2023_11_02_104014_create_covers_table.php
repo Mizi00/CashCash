@@ -22,7 +22,7 @@ return new class extends Migration
             //relation avec les tables
             $table->foreign('serialNum')->references('id')->on('materials');
             $table->foreign('sheetNum')->references('id')->on('interventions');
-            $table->primary(['serialNum,sheetNum']); //definition de la clé primaire
+            $table->primary(['serialNum','sheetNum']); //definition de la clé primaire
         });
     }
 
