@@ -24,9 +24,9 @@ return new class extends Migration
             $table->integer('numContract');
 
             //relations avec les tables étrangères
-            $table->foreign('referenceInterne')->reference('id')->on('materialstypes');
-            $table->foreign('numClient')->reference('id')->on('materialstypes');
-            $table->foreign('numContract')->reference('id')->on('materialstypes');
+            $table->foreign('referenceInterne')->references('id')->on('materialstypes');
+            $table->foreign('numClient')->references('id')->on('materialstypes');
+            $table->foreign('numContract')->references('id')->on('materialstypes');
 
 
         });

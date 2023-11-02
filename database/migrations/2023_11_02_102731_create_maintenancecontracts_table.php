@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('numClient');
 
             //relation avec la clé étrangère
-            $table->foreign('numClient')->reference('id')->on('customers');
+            $table->foreign('numClient')->references('id')->on('customers');
 
         });
     }

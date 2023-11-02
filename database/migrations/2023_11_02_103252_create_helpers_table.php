@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id'); //clé primaire étrangère
 
             //relation avec la clé etrangère
-            $table->foreign('id')->reference('id')->on('employees');
+            $table->foreign('id')->references('id')->on('employees');
         });
     }
 

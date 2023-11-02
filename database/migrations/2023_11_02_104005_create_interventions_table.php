@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('numMatricule');
 
             //relation avec les clés étrangères
-            $table->foreign('numClient')->reference('id')->on('customers');
-            $table->foreign('numMatricule')->reference('id')->on('employees');
+            $table->foreign('numClient')->references('id')->on('customers');
+            $table->foreign('numMatricule')->references('id')->on('employees');
         });
     }
 

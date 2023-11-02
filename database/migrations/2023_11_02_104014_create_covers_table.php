@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('covers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedInteger('passingTime', 100);
+            $table->string('commentWorks', 700);
+
+            //clés étrangères
+            $table->integer('numSerie');
+            $table->integer('numFiche');
+
+            //relation avec les tables
+            $table->foreign('numSerie')->references('id')->on('materials');
+            $table->foreign('numFiche')->references('id')->on('interventions');
         });
     }
 

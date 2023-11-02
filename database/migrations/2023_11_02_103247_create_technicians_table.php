@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('numAgence');
 
             //relations clés étrangères
-            $table->foreign('id')->reference('id')->on('employees');
-            $table->foreign('numAgence')->reference('id')->on('agencies');
+            $table->foreign('id')->references('id')->on('employees');
+            $table->foreign('numAgence')->references('id')->on('agencies');
 
         });
     }
