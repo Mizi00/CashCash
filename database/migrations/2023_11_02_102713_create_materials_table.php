@@ -20,11 +20,11 @@ return new class extends Migration
 
             //clés étrangères
             $table->string('internalRef');
-            $table->integer('clientNum');
-            $table->integer('contractNum');
+            $table->unsignedBigInteger('clientNum');
+            $table->unsignedBigInteger('contractNum')->nullable();
 
             //relations avec les tables étrangères
-            $table->foreign('internalRef')->references('id')->on('materialstypes');
+            $table->foreign('internalRef')->references('internalRef')->on('materialstypes');
             $table->foreign('clientNum')->references('id')->on('clients');
             $table->foreign('contractNum')->references('id')->on('maintenancecontracts');
 

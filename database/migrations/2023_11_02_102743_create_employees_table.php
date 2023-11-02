@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('lastName', 40);
             $table->string('firstName', 40);
             $table->date('hireDate'); //date embauche
-            $table->string('mailAddress', 255);
+            $table->string('mailAddress', 255)->unique();
             $table->string('phoneNumber', 10);
             $table->string('password', 60);
         });

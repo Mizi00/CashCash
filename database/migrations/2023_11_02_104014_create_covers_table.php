@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('covers', function (Blueprint $table) {
-            $table->unsignedInteger('passingTime', 100);
+            $table->unsignedInteger('passingTime');
             $table->string('commentWorks', 700);
 
             //clés étrangères
-            $table->integer('serialNum');
-            $table->integer('sheetNum');
+            $table->unsignedBigInteger('serialNum');
+            $table->unsignedBigInteger('sheetNum');
 
             //relation avec les tables
             $table->foreign('serialNum')->references('id')->on('materials');

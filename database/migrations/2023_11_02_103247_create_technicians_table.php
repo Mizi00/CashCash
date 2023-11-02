@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('qualification', 100);
 
             //clé étrangère
-            $table->integer('agencyNum');
+            $table->unsignedBigInteger('agencyNum');
 
             //relations clés étrangères
-            
             $table->foreign('agencyNum')->references('id')->on('agencies');
 
         });

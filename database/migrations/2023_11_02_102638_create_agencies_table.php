@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 40);
             $table->string('address', 50);
             $table->string('phoneNumber', 10);
-            $table->string('mailAddress', 255);
+            $table->string('mailAddress', 255)->unique();
 
         });
     }

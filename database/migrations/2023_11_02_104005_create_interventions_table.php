@@ -16,8 +16,8 @@ return new class extends Migration
             $table->dateTime('dateTimeVisit');
             
             //clés étrangères
-            $table->integer('clientNum');
-            $table->integer('registrationNum');
+            $table->unsignedBigInteger('clientNum');
+            $table->unsignedBigInteger('registrationNum');
 
             //relation avec les clés étrangères
             $table->foreign('clientNum')->references('id')->on('clients');

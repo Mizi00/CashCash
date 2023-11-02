@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('dueDate'); //date échéance
 
             //clés étrangères
-            $table->integer('clientNum');
+            $table->unsignedBigInteger('clientNum');
 
             //relation avec la clé étrangère
             $table->foreign('clientNum')->references('id')->on('clients');

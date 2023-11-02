@@ -16,17 +16,17 @@ return new class extends Migration
             $table->string('lastName', 40);
             $table->string('firstName', 40);
             $table->string('socialReason', 100);
-            $table->unsignedInteger('sirenNum', 14);
+            $table->unsignedInteger('sirenNum');
             $table->string('apeCode', 10);
             $table->string('address', 50);
             $table->string('phoneNumber', 10);
             $table->string('faxNum', 10);
-            $table->string('mailAddress', 255);
+            $table->string('mailAddress', 255)->unique();
             $table->float('kmDistance', 10);
-            $table->unsignedInteger('travelTime', 5);
+            $table->unsignedInteger('travelTime');
 
             //clé étrangères
-            $table->integer('agencyNum');
+            $table->unsignedBigInteger('agencyNum');
 
             //relation avec les tables
             $table->foreign('agencyNum')->references('id')->on('agencies');
