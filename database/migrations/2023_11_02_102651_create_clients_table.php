@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('socialReason', 100);
             $table->unsignedInteger('sirenNum');
             $table->string('apeCode', 10);
-            $table->string('address', 50);
+            $table->string('address', 255);
             $table->string('phoneNumber', 10);
             $table->string('faxNum', 10);
             $table->string('mailAddress', 255)->unique();
