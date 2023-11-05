@@ -9,4 +9,5 @@ class MaintenanceContract extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'maintenancecontracts';
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('saleDate');
             $table->date('installationDate');
             $table->float('salePrice', 10);
-            $table->string('location', 20);
+            $table->string('location', 255);
 
             //clés étrangères
             $table->string('internalRef');
