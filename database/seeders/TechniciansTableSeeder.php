@@ -13,6 +13,6 @@ class TechniciansTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Technician::factory()->count(15)->create();
+        Technician::factory()->count(10)->create();
     }
 }

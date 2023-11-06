@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('helpers', function (Blueprint $table) {
-            $table->id(); //clé primaire étrangère
-
+            $table->unsignedBigInteger('id'); //clé primaire étrangère
+            $table->primary('id');
             //relation avec la clé etrangère
             $table->foreign('id')->references('id')->on('employees');
         });

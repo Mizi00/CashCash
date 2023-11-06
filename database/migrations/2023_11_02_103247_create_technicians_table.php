@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('technicians', function (Blueprint $table) {
-            $table->id(); //clé primaire étrangère
+            $table->unsignedBigInteger('id'); //clé primaire étrangère
             $table->string('qualification', 100);
-
+            $table->primary('id');
             //clé étrangère
             $table->unsignedBigInteger('agencyNum');
 
+
             //relations clés étrangères
             $table->foreign('agencyNum')->references('id')->on('agencies');
+            $table->foreign('id')->references('id')->on('employees');
+
 
         });
     }
