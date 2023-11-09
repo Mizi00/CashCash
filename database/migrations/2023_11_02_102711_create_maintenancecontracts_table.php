@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('maintenancecontracts', function (Blueprint $table) {
             $table->id();
             $table->date('signatureDate');
-            $table->date('dueDate'); //date échéance
+            $table->date('dueDate');
+            $table->date('renewalDate')->nullable(); //date échéance
 
             //clés étrangères
             $table->unsignedBigInteger('clientNum');

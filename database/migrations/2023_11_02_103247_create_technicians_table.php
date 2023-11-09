@@ -18,12 +18,9 @@ return new class extends Migration
             //clé étrangère
             $table->unsignedBigInteger('agencyNum');
 
-
             //relations clés étrangères
             $table->foreign('agencyNum')->references('id')->on('agencies');
             $table->foreign('id')->references('id')->on('employees');
-
-
         });
     }
 

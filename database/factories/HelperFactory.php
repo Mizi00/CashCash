@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class HelperFactory extends Factory
 {
+    protected $availableEmployeeForHelper;
+
     /**
      * Define the model's default state.
      *
@@ -25,25 +27,22 @@ class HelperFactory extends Factory
     }
 
     protected function getUniqueIdForHelper(){
-        $usedHelperIds = Helper::all()->pluck('id')->toArray();
+        if (!isset($this->availableEmployeeForHelper)) {
+            $technicianIds = Technician::pluck('id')->toArray();
+            $helperIds = Helper::pluck('id')->toArray();
 
-        $technicianIds = Technician::all()->pluck('id')->toArray();
+            $this->availableEmployeeForHelper = Employee::whereNotIn('id', $technicianIds)
+                ->whereNotIn('id', $helperIds)
+                ->pluck('id')
+                ->toArray();
+        }
 
-        $availableEmployeeForHelper = Employee::whereNotIn('id', $technicianIds)
-            ->whereNotIn('id', $usedHelperIds)
-            ->pluck('id')
-            ->toArray();
-
-        if (empty($availableEmployeeForHelper)) {
+        if (empty($this->availableEmployeeForHelper)) {
             // Aucun employé n'est disponible pour le poste d'helper
             return null;
         }
 
-        $randomEmployeeId = $availableEmployeeForHelper[array_rand($availableEmployeeForHelper)];
-
-        //echo($availableEmployeeForHelper."------".$randomEmployeeId."\n");
+        $randomEmployeeId = array_splice($this->availableEmployeeForHelper, array_rand($this->availableEmployeeForHelper), 1)[0];
         return $randomEmployeeId;
-
-    
     }
 }

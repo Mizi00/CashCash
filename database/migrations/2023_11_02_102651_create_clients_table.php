@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('lastName', 40);
-            $table->string('firstName', 40);
             $table->string('socialReason', 100);
             $table->unsignedInteger('sirenNum');
             $table->string('apeCode', 10);
@@ -22,8 +20,6 @@ return new class extends Migration
             $table->string('phoneNumber', 10);
             $table->string('faxNum', 10);
             $table->string('mailAddress', 255)->unique();
-            $table->float('kmDistance', 10);
-            $table->unsignedInteger('travelTime');
 
             //clé étrangères
             $table->unsignedBigInteger('agencyNum');

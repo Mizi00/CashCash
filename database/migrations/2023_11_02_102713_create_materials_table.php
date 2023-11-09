@@ -27,8 +27,6 @@ return new class extends Migration
             $table->foreign('internalRef')->references('internalRef')->on('materialstypes');
             $table->foreign('clientNum')->references('id')->on('clients');
             $table->foreign('contractNum')->references('id')->on('maintenancecontracts');
-
-
         });
     }
 
