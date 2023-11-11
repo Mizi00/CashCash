@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('covers', function (Blueprint $table) {
-            $table->unsignedInteger('passingTime');
-            $table->string('commentWorks', 700);
+            $table->unsignedInteger('passingTime')->nullable();
+            $table->string('commentWorks', 700)->nullable();
 
             //clés étrangères
             $table->unsignedBigInteger('serialNum');
