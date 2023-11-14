@@ -25,4 +25,3 @@ class TechnicianFactory extends Factory
         ];
     }
 }
-²
