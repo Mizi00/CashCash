@@ -18,11 +18,15 @@ class CoverFactory extends Factory
      */
     public function definition(): array
     {
+
+        $materialId = Material::inRandomOrder()->pluck('id')->first();
+        $interventionId = Intervention::inRandomOrder()->pluck('id')->first();
+
         return [
             'passingTime' => fake()->numberBetween(1,100),
             'commentWorks' => fake()->text(200),
-            'serialNum' => Material::inRandomOrder()->first()->id,
-            'sheetNum' => Intervention::inRandomOrder()->first()->id
+            'serialNum' => $materialId,
+            'sheetNum' => $interventionId
         ];
     }
 }
