@@ -1,0 +1,60 @@
+
+.stats {
+
+    &-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    &-card {
+        flex: 1 1 calc(25% - 20px);
+        background-color: #fff;
+        border: 1px solid $bg-color-opacity !important;
+        padding: 20px !important;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+
+        &.normal {
+            display: block;
+        }
+    }
+
+    &-width {
+        width: 100%;
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &-number {
+        color: #4caf50;
+        background-color: #e8f5e9;
+        padding: 15px;
+        line-height: 1px;
+        border-radius: 10em;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    
+    &-layer-top {
+        margin-bottom: 10px;
+        width: 100%;
+
+        h6 {
+            line-height: 1;
+        }
+    }
+
+    &-flexs {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-layer-bottom {
+        width: 100%;
+    }
+}

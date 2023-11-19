@@ -1,0 +1,98 @@
+$navbar-height: 65px;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: $sidebar-width;
+    height: $navbar-height;
+    width: calc(100% - $sidebar-width);
+
+    background-color: #fff;
+    border-bottom: 1px solid $bg-color-opacity;
+
+    z-index: 100;
+
+    @media screen and (max-width: $responsive-width) {
+        left: 0;
+        width: 100%;
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-content, &-right, &-left {
+        height: inherit;
+    }
+
+    &-auth {
+        a {
+            display: flex;
+            align-items: center;
+            min-height: 65px;
+            padding: 0 15px;
+            div:first-child {
+                margin-right: 10px;
+            }
+        }
+
+        img {
+            border-radius: 50% !important;
+            width: 2rem;
+        }
+
+        /* Dropdown menu */
+        &-dropdown {
+            top: 100%;
+            left: auto;
+            right: 0;
+            margin: 0;
+
+            display: none;
+
+            position: absolute;
+            min-width: 10rem;
+            padding: .5rem 0;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: .25rem;
+
+            & > li {
+                width: 100%;
+
+                & > a {
+                    display: block;
+                    padding-top: 5px !important;
+                    padding-bottom: 5px !important;
+                    line-height: 1.5;
+                    min-height: auto;
+                    padding: 10px 15px;
+
+                    &:hover {
+                        background-color: #f9fafb;
+                    }
+
+                    svg {
+                        margin-right: 10px !important;
+                    }
+                }
+            }
+
+            .divider {
+                border-bottom: 1px solid $bg-color-opacity;
+                height: 1px;
+                overflow: hidden;
+            }
+
+            &.show {
+                display: block;
+            }
+        }
+        /* End dropdown menu */
+    }
+}

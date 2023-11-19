@@ -1,0 +1,15 @@
+
+$bg-color-opacity: rgba(0, 0, 0, 0.0625);
+$default-color: #2196f3;
+
+$responsive-width: 950px;
+
+@import 'reset';
+@import 'sidebar';
+@import 'navbar';
+@import 'page';
+
+@import 'stats';
+@import 'table';
+@import 'form';
+@import 'pagination';

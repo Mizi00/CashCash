@@ -1,0 +1,75 @@
+
+
+form {
+    .form-group {
+        margin-bottom: 1rem;
+
+        label {
+            margin-bottom: .5rem;
+            display: inline-block;
+        }
+
+        small {
+            font-size: .875rem;
+        }
+
+        textarea {
+            height: 135px; // default textarea height
+            resize: vertical;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: .875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+        }        
+    }
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    .form-error {
+        padding: 12px;
+        background-color: #f44336;
+        color: #fff;
+        margin-bottom: 1em;
+    }
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: .875rem;
+    border-radius: .25rem;
+
+    &-primary {
+        background-color: $default-color;
+        border-color: $default-color;
+        color: #fff;
+
+        &:hover {
+            background-color: #42a6f5;
+            border-color: #37a1f4;
+        }
+    }
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+}
