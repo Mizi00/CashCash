@@ -17,6 +17,12 @@ $sidebar-width: 280px;
         display: none;
     }
 
+    // Responsive sidebar
+    &.show {
+        display: block;
+        background: #fff;
+    }
+
     // Sidebar logo
     &-logo {
         border-bottom: 1px solid $bg-color-opacity;        

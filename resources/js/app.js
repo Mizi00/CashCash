@@ -24,3 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// CTRL + SHIFT + S, to show sidebar for debug
+document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.shiftKey && event.key === 'S') {          
+        let sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('show');
+    }
+});
