@@ -21,7 +21,7 @@ class MaintenanceContractFactory extends Factory
         return [
             'signatureDate' => $date,
             'dueDate' => fake()->dateTimeBetween($date, '+1 year'),
-            'clientNum' => Client::inRandomOrder()->first()->id
+            'clientNum' => Client::inRandomOrder()->pluck('id')->first()
         ];
     }
 }

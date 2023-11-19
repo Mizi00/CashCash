@@ -17,7 +17,7 @@ class InterventionSheetFactory extends Factory
     public function definition(): array
     {
         return [
-            'creationDate'=>fake()->dateTime()
+            'creationDate' => fake()->dateTime() 
         ];
     }
 }

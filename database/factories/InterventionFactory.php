@@ -19,7 +19,7 @@ class InterventionFactory extends Factory
     {
         return [
             'dateTimeVisit' => fake()->dateTimeBetween('2023-01-01','2024-12-31'),
-            'clientNum' => Client::inRandomOrder()->first(),
+            'clientNum' => Client::inRandomOrder()->pluck('id')->first(),
             'registrationNum' => null,
             'sheetNum' => null
         ];

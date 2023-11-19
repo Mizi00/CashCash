@@ -18,9 +18,8 @@ class CoverFactory extends Factory
      */
     public function definition(): array
     {
-
         $materialId = Material::inRandomOrder()->pluck('id')->first();
-        $interventionId = Intervention::inRandomOrder()->pluck('id')->first();
+        $interventionId = Intervention::whereNotIn('id', [$materialId])->inRandomOrder()->pluck('id')->first();
 
         return [
             'passingTime' => fake()->numberBetween(1,100),

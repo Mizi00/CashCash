@@ -16,13 +16,11 @@ class AgencyFactory extends Factory
      */
     public function definition(): array
     {
-        
         return [
             'name' => fake()->company(),
             'address' => fake()->address(),
             'phoneNumber' => fake()->numerify('0#########'),
             'mailAddress' => fake()->unique()->safeEmail()
-            
         ];
     }
 }

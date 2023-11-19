@@ -24,7 +24,6 @@ class EmployeeFactory extends Factory
             'mailAddress' => fake()->unique()->safeEMail(),
             'phoneNumber' => fake()->numerify('06########'),
             'password' => Hash::make('P@ssword')
-
         ];
     }
 }

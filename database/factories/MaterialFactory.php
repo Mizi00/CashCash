@@ -25,10 +25,9 @@ class MaterialFactory extends Factory
             'location' => fake()->randomElement(['Fruits & Légumes', 'Poissonerie', 'Boucherie', 'Boulangerie',
                                                 'Produits ménagers', 'Électronique', 'Vêtements', 'Bricolage & quincaillerie',
                                                 'Jouets & jeux']),
-            'internalRef' => MaterialType::inRandomOrder()->first()->internalRef,
-            'clientNum' => Client::inRandomOrder()->first()->id,
+            'internalRef' => MaterialType::inRandomOrder()->pluck('internalRef')->first(),
+            'clientNum' => Client::inRandomOrder()->pluck('id')->first(),
             'contractNum' => null
-            
         ];
     }
 }

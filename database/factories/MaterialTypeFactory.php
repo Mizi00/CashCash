@@ -16,8 +16,6 @@ class MaterialTypeFactory extends Factory
      */
     public function definition(): array
     {
-
-
         return [
             'internalRef' => fake()->unique()->regexify('[A-Za-z0-9]{8}'),
             'label' => fake()->word()

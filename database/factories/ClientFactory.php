@@ -17,7 +17,6 @@ class ClientFactory extends Factory
      */
     public function definition(): array
     {
-    
         return [
             'socialReason' => fake()->company(),
             'sirenNum' => fake()->numerify('#########'),
@@ -26,7 +25,7 @@ class ClientFactory extends Factory
             'phoneNumber' =>fake()->numerify('06########'),
             'faxNum' => fake()->numerify('0#########'),
             'mailAddress' => fake()->unique()->safeEmail(),
-            'agencyNum' => Agency::inRandomOrder()->first()->id
+            'agencyNum' => Agency::inRandomOrder()->pluck('id')->first()
          ];
     }
 }
