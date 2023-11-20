@@ -1,0 +1,37 @@
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.pagination {
+    display: flex;
+
+    li {
+        a, span {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid $bg-color-opacity;
+        }
+        &.active span {
+            background-color: $default-color;
+            color: #fff;
+        }
+
+        .page-link {
+            color: #72777a;
+        }
+
+        &.disabled {
+            span, a {
+                color: #999;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    &-info {
+        color: #72777a;
+    }
+}
