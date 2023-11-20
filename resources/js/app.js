@@ -3,7 +3,7 @@ import '../css/app.scss';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Sélectionnez les éléments
-    var auth = document.querySelector('.navbar-auth');
+    var auth = document.querySelector('.navbar-auth > a');
     var authDropdown = document.querySelector('.navbar-auth-dropdown');
     var isDropdownOpen = false;
 

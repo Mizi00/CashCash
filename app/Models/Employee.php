@@ -11,4 +11,10 @@ class Employee extends Model implements Authenticatable
 {
     use HasFactory, AuthenticatableTrait;
     public $timestamps = false;
+
+    protected $fillable = [
+        'firstname', 'lastname', 'mailAddress', 'password'
+    ];
+
+    protected $hidden = ['password'];
 }

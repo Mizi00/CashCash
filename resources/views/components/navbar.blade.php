@@ -4,8 +4,9 @@
         <ul class="navbar-right">
             <li class="navbar-auth">
                 <a href="">
-                    <div><img src="https://randomuser.me/api/portraits/women/71.jpg" alt=""></div>
-                    <div><span>John Doe</span></div>
+                @php $userName = auth()->user()->firstName . ' ' . auth()->user()->lastName; @endphp
+                    <div><img src="https://ui-avatars.com/api/?name={{ $userName }}&background=random&size=128" alt=""></div>
+                    <div><span>{{ $userName }}</span></div>
                 </a>
                 <ul class="navbar-auth-dropdown">
                     <li>
@@ -22,7 +23,7 @@
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                        <a href="">
+                        <a href="{{ route('logout') }}">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span>Logout</span>
                         </a>

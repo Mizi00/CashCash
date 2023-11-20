@@ -20,7 +20,13 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login-post');
 });
 
-Route::view('/', 'home');
-Route::view('/stats', 'stats');
-Route::view('/table', 'table');
-Route::view('/form', 'form');
+Route::middleware('auth')->group(function () {
+
+    Route::view('/', 'home');
+    Route::view('/stats', 'stats');
+    Route::view('/table', 'table');
+    Route::view('/form', 'form');
+    
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+

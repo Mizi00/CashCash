@@ -40,13 +40,9 @@ class AuthController extends Controller
     /**
      * Log the authenticated employee out of the application
      */
-    public function logout(Request $request): RedirectResponse
+    public function logout()
     {
         Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
 
         return redirect()->route('login');
     }

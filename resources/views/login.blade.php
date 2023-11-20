@@ -7,7 +7,7 @@
         @csrf
         @if(session('error'))
             <div class="form-error">{{ session('error') }}</div>
-        @endif        
+        @endif
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="mailAddress" class="form-control" placeholder="john.doe@example.fr">
