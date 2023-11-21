@@ -12,3 +12,4 @@
         @endfor
     </ul>
 </div>
+<div class="mask" id="mask"></div>
