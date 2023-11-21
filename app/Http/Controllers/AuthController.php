@@ -42,6 +42,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        // Disconnect employee using Auth facade
         Auth::logout();
 
         return redirect()->route('login');
