@@ -1,6 +1,6 @@
 <div class="navbar">
     <div class="navbar-content">
-        <div class="navbar-left"></div>
+        <div class="navbar-left"><a id="navbar-menu" href="javascript:void(0);"><i class="fa-solid fa-bars"></i></a></div>
         <ul class="navbar-right">
             <li class="navbar-auth">
                 <a href="">

@@ -13,14 +13,15 @@ $sidebar-width: 280px;
 
     z-index: 200;
 
+    // Responsive media queries
     @media screen and (max-width: $responsive-width) {
         display: none;
-    }
 
-    // Responsive sidebar
-    &.show {
-        display: block;
-        background: #fff;
+        // Responsive sidebar
+        &.show {
+            display: block;
+            background: #fff;
+        }
     }
 
     // Sidebar logo

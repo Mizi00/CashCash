@@ -12,9 +12,27 @@ $navbar-height: 65px;
 
     z-index: 100;
 
+    &-left > a {
+        display: none;
+    }
+
     @media screen and (max-width: $responsive-width) {
         left: 0;
         width: 100%;
+
+        &-left > a {
+            color: #72777a;
+            padding: 0 15px;
+            display: block;
+            line-height: $navbar-height;
+            min-height: $navbar-height;
+    
+            transition: color .2s ease-in-out;
+    
+            &:hover {
+                color: #313435;
+            }
+        }
     }
 
     &-content {
@@ -25,13 +43,13 @@ $navbar-height: 65px;
 
     &-content, &-right, &-left {
         height: inherit;
-    }
+    }    
 
     &-auth {
         a {
             display: flex;
             align-items: center;
-            min-height: 65px;
+            min-height: $navbar-height;
             padding: 0 15px;
             div:first-child {
                 margin-right: 10px;
