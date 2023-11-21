@@ -17,7 +17,7 @@ use App\Http\Controllers\AuthController;
 // Route where only unauthenticated employees can access
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login-post');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login-post');
 });
 
 // Route where only authenticated employees can access
