@@ -4,10 +4,9 @@ import '../css/app.scss';
 document.addEventListener('DOMContentLoaded', () => {
     // Sélectionnez les éléments
     var auth = document.querySelector('.navbar-auth > a');
-    if (auth) {
-        var authDropdown = document.querySelector('.navbar-auth-dropdown');
-        var isDropdownOpen = false;
-
+    var authDropdown = document.querySelector('.navbar-auth-dropdown');
+    var isDropdownOpen = false;
+    if(auth) {
         auth.addEventListener('click', (e) => {
             e.preventDefault();
 

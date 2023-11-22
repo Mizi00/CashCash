@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'home');
-Route::view('/stats', 'stats');
-Route::view('/table', 'table');
-Route::view('/form', 'form');
-Route::view('/login', 'login');
+// Route where only unauthenticated employees can access
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'index'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login-post');
+});
+
+// Route where only authenticated employees can access
+Route::middleware('auth')->group(function () {
+
+    Route::view('/', 'home');
+    Route::view('/stats', 'stats');
+    Route::view('/table', 'table');
+    Route::view('/form', 'form');
+    
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
