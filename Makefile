@@ -19,3 +19,11 @@ test:
 # Compile assets
 assets:
 	npm run dev
+
+# Run migrations and seeders
+db:
+	php artisan migrate --seed
+
+# Run refresh migrations ans seeders
+dbrefresh:
+	php artisan migrate:fresh --seed
