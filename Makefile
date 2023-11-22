@@ -5,7 +5,7 @@ install:
 	composer install
 	npm install
 	npm install sass
-	cp .env.example .env
+	copy .env.example .env
 	php artisan key:generate
 
 # Run development server
