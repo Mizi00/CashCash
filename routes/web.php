@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,16 @@ Route::middleware('guest')->group(function () {
 // Route where only authenticated employees can access
 Route::middleware('auth')->group(function () {
 
+    // Design routes
     Route::view('/', 'home');
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
+
+    // Clients routes
+    Route::prefix('clients')->group(function () {
+        Route::get('/', [ClientController::class, 'index']);
+    });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
