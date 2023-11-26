@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InterventionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
+
+    Route::prefix('interventions')->group(function () {
+        Route::get('/', [InterventionController::class, 'index']);
+    });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
