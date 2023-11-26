@@ -14,7 +14,7 @@
             </tr>
         </thead>                
         <tbody>
-            @foreach($interventions as $intervention)
+            @forelse($interventions as $intervention)
                 <tr>
                     <td>{{ Carbon\Carbon::parse($intervention->dateTimeVisit)->format('d/m/Y H:i') }}</td>
                     <td>Chief Executive Officer (CEO)</td>
@@ -23,7 +23,11 @@
                     <td>2009/10/09</td>
                     <td>$1,200,000</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="6">No interventions found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
     {{ $interventions->links('pagination.default') }}
