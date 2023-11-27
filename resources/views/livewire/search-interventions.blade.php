@@ -5,10 +5,10 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
+                <th>Visit date</th>
+                <th>Client</th>
+                <th>Technician</th>
+                <th>Sheet Number</th>
                 <th>Start date</th>
                 <th>Salary</th>
             </tr>
@@ -17,9 +17,9 @@
             @forelse($interventions as $intervention)
                 <tr>
                     <td>{{ Carbon\Carbon::parse($intervention->dateTimeVisit)->format('d/m/Y H:i') }}</td>
-                    <td>Chief Executive Officer (CEO)</td>
-                    <td>Tokyo</td>
-                    <td>33</td>
+                    <td>{{ $intervention->client->socialReason }}</td>
+                    <td>{{ optional($intervention->technician)->id ?? 'N/A' }}</td>
+                    <td>{{ optional($intervention->interventionsheet)->id ?? 'N/A' }}</td>
                     <td>2009/10/09</td>
                     <td>$1,200,000</td>
                 </tr>
