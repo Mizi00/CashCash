@@ -5,23 +5,27 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>ID</th>
+                <th>Social Reason</th>
+                <th>SIREN Number</th>
+                <th>APE Code</th>
+                <th>Phone Number</th>
+                <!-- <th>Fax Number</th> -->
+                <th>Address</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
             @forelse($clients as $client)
                 <tr>
                     <td>{{ $client->id }}</td>
-                    <td>Chief Executive Officer (CEO)</td>
-                    <td>Tokyo</td>
-                    <td>33</td>
-                    <td>2009/10/09</td>
-                    <td>$1,200,000</td>
+                    <td>{{ $client->socialReason }}</td>
+                    <td>{{ $client->sirenNum }}</td>
+                    <td>{{ $client->apeCode }}</td>
+                    <td>{{ $client->phoneNumber }}</td>
+                    <!--<td>{{ $client->faxNum }}</td>-->
+                    <td>{{ $client->address }}</td>
+                    <td>{{ $client->mailAddress }}</td>
                 </tr>
             @empty
                 <tr>
@@ -30,5 +34,5 @@
             @endforelse
         </tbody>
     </table>
-    {{ $clients->links('pagination.default') }}
+    {{ $clients->links('livewire.pagination') }}
 </div>
