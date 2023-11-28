@@ -30,5 +30,5 @@
             @endforelse
         </tbody>
     </table>
-    {{ $interventions->links('pagination.default') }}
+    {{ $interventions->links('livewire.pagination') }}
 </div>
