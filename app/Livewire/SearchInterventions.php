@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Intervention;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
 class SearchInterventions extends Component
 {
+    use WithPagination;
+    
     public $searchDate;
 
     public function render()
