@@ -1,6 +1,6 @@
 <div>
     <div class="table-search">
-        <label>Search:<input type="date" wire:model.live="searchDate" aria-controls="table"></label>
+        <label>Search:<input type="date" wire:model.live="searchDate" aria-controls="table"><input type="number" placeholder="Registration number" wire:model.live="searchTech" aria-controls="table"></label>
     </div>
     <table>
         <thead>

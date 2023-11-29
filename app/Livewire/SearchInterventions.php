@@ -11,15 +11,18 @@ class SearchInterventions extends Component
 {
     use WithPagination;
     
-    public $searchDate;
+    public $searchDate, $searchTech;
 
     public function render()
     {
-        $interventions = Intervention::query()
-            ->when($this->searchDate, function($query) {
-                return $query->where(DB::raw('DATE_FORMAT(dateTimeVisit, "%Y-%m-%d")'), $this->searchDate);
-            })
-            ->paginate(10);
+        $interventions = Intervention::query();            
+
+        if ($this->searchTech) {
+            $interventions->where('registrationNum', $this->searchTech);
+        } elseif ($this->searchDate) {
+            $interventions->where(DB::raw('DATE_FORMAT(dateTimeVisit, "%Y-%m-%d")'), $this->searchDate);
+        }
+        $interventions = $interventions->paginate(10);
 
         return view('livewire.search-interventions', compact('interventions'));
     }
