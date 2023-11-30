@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('interventions')->group(function () {
         Route::get('/', [InterventionController::class, 'index']);
+
+        Route::get('/edit/{id}', [InterventionController::class, 'edit']);
+        Route::post('/update/{id}', [InterventionController::class, 'update']);
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

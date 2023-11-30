@@ -11,4 +11,11 @@ class InterventionController extends Controller
     {        
         return view('interventions.index');
     }
+
+    public function edit($id)
+    {
+        $intervention = Intervention::findOrFail($id);
+
+        return view('interventions.edit', compact('intervention'));
+    }
 }
