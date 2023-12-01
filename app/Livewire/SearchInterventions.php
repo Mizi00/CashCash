@@ -26,4 +26,14 @@ class SearchInterventions extends Component
 
         return view('livewire.search-interventions', compact('interventions'));
     }
+
+    public function updatingSearchDate()
+    {
+        $this->gotoPage(1);
+    }
+
+    public function updatingSearchTech()
+    {
+        $this->gotoPage(1);
+    }
 }
