@@ -30,6 +30,11 @@ form {
             background-clip: padding-box;
             border: 1px solid #ced4da;
             border-radius: .25rem;
+
+            &:disabled {
+                background-color: #e9ecef;
+                cursor: not-allowed;
+            }
         }        
     }
     .form-row {
