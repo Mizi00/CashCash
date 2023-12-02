@@ -29,11 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::view('/table', 'table');
     Route::view('/form', 'form');
 
-    Route::prefix('interventions')->group(function () {
+    Route::prefix('interventions')->name('interventions.')->group(function () {
         Route::get('/', [InterventionController::class, 'index']);
 
-        Route::get('/edit/{id}', [InterventionController::class, 'edit']);
-        Route::post('/update/{id}', [InterventionController::class, 'update']);
+        Route::get('/edit/{id}', [InterventionController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [InterventionController::class, 'update'])->name('update');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
