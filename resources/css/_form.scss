@@ -30,7 +30,14 @@ form {
             background-clip: padding-box;
             border: 1px solid #ced4da;
             border-radius: .25rem;
-        }        
+
+            transition: box-shadow .15s ease-in-out;
+            &:focus {
+                border-color: #90cbf9;
+                outline: 0;
+                box-shadow: 0 0 0 .25rem rgba(33, 150, 243, .25);
+            }
+        }
     }
     .form-row {
         display: flex;
@@ -64,9 +71,14 @@ form {
         border-color: $default-color;
         color: #fff;
 
-        &:hover {
+        transition: box-shadow .15s ease-in-out;
+        &:hover, &:focus {
             background-color: #42a6f5;
             border-color: #37a1f4;
+        }
+
+        &:focus {
+            box-shadow: 0 0 .25rem rgba(28, 128, 207, .5);
         }
     }
 
