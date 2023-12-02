@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/form', 'form');
 
     Route::prefix('interventions')->name('interventions.')->group(function () {
-        Route::get('/', [InterventionController::class, 'index']);
+        Route::get('/', [InterventionController::class, 'index'])->name('index');
 
         Route::get('/edit/{id}', [InterventionController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [InterventionController::class, 'update'])->name('update');
