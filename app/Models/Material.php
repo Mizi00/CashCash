@@ -9,4 +9,9 @@ class Material extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function materialtype() 
+    {
+        return $this->belongsTo(MaterialType::class, 'internalRef', 'internalRef');
+    }
 }

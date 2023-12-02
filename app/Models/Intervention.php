@@ -20,8 +20,8 @@ class Intervention extends Model
         return $this->belongsTo(Technician::class, 'registrationNum');
     }
 
-    public function interventionsheet()
+    public function covers()
     {
-        return $this->belongsTo(InterventionSheet::class, 'sheetNum');
+        return $this->hasMany(Cover::class, 'sheetNum');
     }
 }
