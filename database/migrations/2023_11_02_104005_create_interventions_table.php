@@ -18,12 +18,10 @@ return new class extends Migration
             //clés étrangères
             $table->unsignedBigInteger('clientNum');
             $table->unsignedBigInteger('registrationNum')->nullable();
-            $table->unsignedBigInteger('sheetNum')->nullable();
-
+            
             //relation avec les clés étrangères
             $table->foreign('clientNum')->references('id')->on('clients');
             $table->foreign('registrationNum')->references('id')->on('employees');
-            $table->foreign('sheetNum')->references('id')->on('interventionsheets');
         });
     }
 
