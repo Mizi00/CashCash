@@ -70,6 +70,7 @@
                         <th>Age</th>
                         <th>Start date</th>
                         <th>Salary</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>                
                 <tbody>
@@ -81,6 +82,7 @@
                         <td>33</td>
                         <td>2009/10/09</td>
                         <td>$1,200,000</td>
+                        <td><div class="table-actions"><a href="/interventions/view/{{ $i }}"><i class="fa-regular fa-eye"></i></a><a href="/interventions/edit/{{ $i }}"><i class="fa-regular fa-pen-to-square"></i></a></div></td>
                     </tr>
                     @endfor
                 </tbody>
