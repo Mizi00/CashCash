@@ -20,8 +20,14 @@ class Intervention extends Model
         return $this->belongsTo(Technician::class, 'registrationNum');
     }
 
-    public function covers()
+    public function materials()
     {
-        return $this->hasMany(Cover::class, 'sheetNum');
+        return $this->belongsToMany(Material::class, 'covers', 'sheetNum', 'serialNum')
+            ->withPivot('commentWorks', 'passingTime');
+    }
+  
+    public function getNumberOfMaterialsAttribute()
+    {
+        return $this->materials->count();
     }
 }
