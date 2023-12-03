@@ -58,7 +58,8 @@
     <main class="main-content">
         <h4 class="main-title">Data tables</h4>
         <div class="main-block">
-            <div class="table-search">
+            <div class="table-search spaced">
+                <label>Show <select name="" id=""><option value="10">10</option><option value="25">25</option><option value="50">50</option></select> entries</label>
                 <label>Search:<input type="search" aria-controls="table"></label>
             </div>
             <table>
@@ -72,7 +73,7 @@
                         <th>Salary</th>
                         <th>Actions</th>
                     </tr>
-                </thead>                
+                </thead>
                 <tbody>
                     @for($i=0;$i<10;$i++)
                     <tr>

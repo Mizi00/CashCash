@@ -40,6 +40,11 @@ table {
 .table-search {
     display: flex;
     justify-content: flex-end;
+
+    &.spaced {
+        justify-content: space-between;
+    }
+    
     input {
         border: 1px solid $bg-color-opacity;
         border-radius: 2px;
@@ -47,5 +52,16 @@ table {
         height: 35px;
         margin-left: 15px;
         padding: 5px;
+    }
+    select {
+        border: 1px solid $bg-color-opacity;
+        border-radius: 2px;
+        box-shadow: none;
+        height: 35px;
+        font-size: 14px;
+        padding: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #72777a;
     }
 }
