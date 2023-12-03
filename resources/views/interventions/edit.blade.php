@@ -10,6 +10,7 @@
         <div class="main-block">
             <form action="{{ route('interventions.update', $intervention->id) }}" method="post">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
                     <label for="datetimevisit">Date of visit</label>
                     <input type="datetime-local" name="datetimevisit" id="datetimevisit" class="form-control" value="{{ $intervention->dateTimeVisit }}">

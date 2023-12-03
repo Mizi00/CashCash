@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/show/{id}', [InterventionController::class, 'show'])->name('show');
 
         Route::get('/edit/{id}', [InterventionController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [InterventionController::class, 'update'])->name('update');
+        Route::patch('/update/{id}', [InterventionController::class, 'update'])->name('update');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
