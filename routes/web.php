@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('interventions')->name('interventions.')->group(function () {
         Route::get('/', [InterventionController::class, 'index'])->name('index');
+        Route::get('/show/{id}', [InterventionController::class, 'show'])->name('show');
 
         Route::get('/edit/{id}', [InterventionController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [InterventionController::class, 'update'])->name('update');
