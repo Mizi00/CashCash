@@ -31,8 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::view('/form', 'form');
 
     // Clients routes
-    Route::prefix('clients')->group(function () {
+    Route::prefix('clients')->name('clients.')->group(function () {
         Route::get('/', [ClientController::class, 'index']);
+
+        Route::get('/show/{id}', [ClientController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('edit');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

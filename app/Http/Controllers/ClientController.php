@@ -11,4 +11,12 @@ class ClientController extends Controller
     {
         return view('clients.index');
     }
+
+    public function show()
+    {
+    }
+
+    public function edit()
+    {
+    }
 }
