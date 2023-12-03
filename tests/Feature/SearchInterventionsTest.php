@@ -21,7 +21,7 @@ class SearchInterventionsTest extends TestCase
             'dateTimeVisit' => '2018-06-08 10:00:00'
         ]);
 
-        $formattedDate = Carbon::parse($intervention->dateTimeVisit)->format('d/m/Y H:i');
+        $formattedDate = Carbon::parse($intervention->dateTimeVisit)->isoFormat('MMM D, YYYY HH[:]mm A');
 
         Livewire::test(SearchInterventions::class)
             ->set('searchDate', '2018-06-08')
@@ -37,7 +37,7 @@ class SearchInterventionsTest extends TestCase
             'registrationNum' => $technician->id
         ]);
 
-        $formattedDate = Carbon::parse($intervention->dateTimeVisit)->format('d/m/Y H:i');
+        $formattedDate = Carbon::parse($intervention->dateTimeVisit)->isoFormat('MMM D, YYYY HH[:]mm A');
 
         Livewire::test(SearchInterventions::class)
             ->set('searchTech', $technician->id)
