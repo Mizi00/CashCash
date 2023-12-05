@@ -10,6 +10,10 @@ class Intervention extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = [
+        'dateTimeVisit'
+    ];
+
     public function client()
     {
         return $this->belongsTo(Client::class, 'clientNum');

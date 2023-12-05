@@ -6,6 +6,7 @@
     <table>
         <thead>
             <tr>
+                <th>#</th>
                 <th>Visit date</th>
                 <th>Client</th>
                 <th>Technician</th>
@@ -18,6 +19,7 @@
         <tbody>
             @forelse($interventions as $intervention)
                 <tr>
+                    <td>{{ $intervention->id }}</td>
                     <td>{{ Carbon\Carbon::parse($intervention->dateTimeVisit)->isoFormat('MMM D, YYYY HH[:]mm A') }}</td>
                     <td>{{ $intervention->client->socialReason }}</td>
                     <td>{{ optional($intervention->technician)->id ?? 'N/A' }}</td>

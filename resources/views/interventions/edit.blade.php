@@ -12,15 +12,15 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="datetimevisit">Date of visit</label>
-                    <input type="datetime-local" name="datetimevisit" id="datetimevisit" class="form-control" value="{{ $intervention->dateTimeVisit }}">
+                    <label for="dateTimeVisit">Date of visit</label>
+                    <input type="datetime-local" name="dateTimeVisit" id="dateTimeVisit" class="form-control" value="{{ $intervention->dateTimeVisit }}">
                 </div>
                 @if($intervention->technician == null)
                     <fieldset disabled="disabled">
                 @endif
                     <div class="form-group">
-                        <label for="registrationnum">Registration number</label>
-                        <input type="number" name="registrationnum" id="registrationnum" class="form-control" value="{{ optional($intervention->technician)->id ?? '' }}" placeholder="{{ $intervention->technician === null ? 'No technician assigned' : '' }}">
+                        <label for="registrationNum">Registration number</label>
+                        <input type="number" name="registrationNum" id="registrationNum" class="form-control" value="{{ optional($intervention->technician)->id ?? '' }}" placeholder="{{ $intervention->technician === null ? 'No technician assigned' : '' }}">
                     </div>
                 @if($intervention->technician == null)
                     </fieldset>

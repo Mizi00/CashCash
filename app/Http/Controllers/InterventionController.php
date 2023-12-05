@@ -26,11 +26,10 @@ class InterventionController extends Controller
     {
         // Check form fields
         $credentials = $request->validate([
-            'datetimevisit' => 'required|date'
+            'dateTimeVisit' => 'required|date'
         ]);
 
-        $intervention->dateTimeVisit = $request->input('datetimevisit');
-        $intervention->save();
+        $intervention->update($credentials);
 
         return redirect()->route('interventions.index')->with('success', 'Intervention sheet successfully updated');
     }
