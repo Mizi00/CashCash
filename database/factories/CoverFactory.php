@@ -20,10 +20,10 @@ class CoverFactory extends Factory
     {
         $materialId = Material::inRandomOrder()->pluck('id')->first();
         $interventionId = Intervention::whereNotIn('id', [$materialId])->inRandomOrder()->pluck('id')->first();
-
+        $random = rand(0,1);
         return [
-            'passingTime' => fake()->numberBetween(1,100),
-            'commentWorks' => fake()->text(200),
+            'passingTime' => $random ? fake()->numberBetween(1,100) : null,
+            'commentWorks' => $random ? fake()->text(200) : null,
             'serialNum' => $materialId,
             'sheetNum' => $interventionId
         ];
