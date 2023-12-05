@@ -11,7 +11,7 @@ class SearchInterventions extends Component
 {
     use WithPagination;
     
-    public $searchDate, $searchTech;
+    public $searchDate, $searchTech, $perPage = 10;
 
     public function render()
     {
@@ -22,7 +22,7 @@ class SearchInterventions extends Component
         } elseif ($this->searchDate) {
             $interventions->where(DB::raw('DATE_FORMAT(dateTimeVisit, "%Y-%m-%d")'), $this->searchDate);
         }
-        $interventions = $interventions->paginate(10);
+        $interventions = $interventions->paginate($this->perPage);
 
         return view('livewire.search-interventions', compact('interventions'));
     }
