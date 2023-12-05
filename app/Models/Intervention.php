@@ -30,4 +30,14 @@ class Intervention extends Model
     {
         return $this->materials->count();
     }
+
+    public function isCompleted()
+    {
+        foreach ($this->materials as $material) {
+            if (is_null($material->pivot->commentWorks) || is_null($material->pivot->passingTime)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
