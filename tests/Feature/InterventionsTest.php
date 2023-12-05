@@ -58,8 +58,8 @@ class InterventionsTest extends TestCase
         $newDate = '2024-01-24 10:30:00';
 
         $this->actingAs($employee);
-        $response = $this->patch(route('interventions.update', ['id' => $intervention->id]), [
-            'datetimevisit' => $newDate
+        $response = $this->patch(route('interventions.update', ['intervention' => $intervention->id]), [
+            'dateTimeVisit' => $newDate
         ]);
 
         $response->assertSessionHasNoErrors();
