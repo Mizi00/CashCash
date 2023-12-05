@@ -11,7 +11,8 @@ class Intervention extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'dateTimeVisit'
+        'dateTimeVisit',
+        'registrationNum'
     ];
 
     public function client()

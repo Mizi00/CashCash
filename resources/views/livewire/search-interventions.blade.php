@@ -10,9 +10,8 @@
                 <th>Visit date</th>
                 <th>Client</th>
                 <th>Technician</th>
-                <th>Status</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Materials</th>
+                <th>Status</th>                
                 <th></th>
             </tr>
         </thead>                
@@ -23,9 +22,8 @@
                     <td>{{ Carbon\Carbon::parse($intervention->dateTimeVisit)->isoFormat('MMM D, YYYY HH[:]mm A') }}</td>
                     <td>{{ $intervention->client->socialReason }}</td>
                     <td>{{ optional($intervention->technician)->id ?? 'N/A' }}</td>
-                    <td><span class="badge {{ is_null($intervention->technician) ? 'red' : ($intervention->isCompleted() ? 'green' : 'orange') }}">{{ is_null($intervention->technician) ? 'Unassigned' : ($intervention->isCompleted() ? 'Completed' : 'In progress') }}</span></td>
-                    <td>2009/10/09</td>
-                    <td>$1,200,000</td>
+                    <td>{{ $intervention->number_of_materials }}</td>
+                    <td><span class="badge {{ is_null($intervention->technician) ? 'red' : ($intervention->isCompleted() ? 'green' : 'orange') }}">{{ is_null($intervention->technician) ? 'Unassigned' : ($intervention->isCompleted() ? 'Completed' : 'In progress') }}</span></td>                    
                     <td><div class="table-actions"><a href="{{ route('interventions.show', $intervention->id) }}"><i class="fa-regular fa-eye"></i></a><a href="{{ route('interventions.edit', $intervention->id) }}"><i class="fa-regular fa-pen-to-square"></i></a></div></td>
                 </tr>
             @empty

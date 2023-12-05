@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Intervention;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class InterventionController extends Controller
 {
@@ -26,7 +27,11 @@ class InterventionController extends Controller
     {
         // Check form fields
         $credentials = $request->validate([
-            'dateTimeVisit' => 'required|date'
+            'dateTimeVisit' => 'required|date',
+            'registrationNum' => [
+                Rule::requiredIf($intervention->technician !== null),
+                'exists:technicians,id'
+            ]
         ]);
 
         $intervention->update($credentials);
