@@ -3,7 +3,7 @@
         <label>Show <select wire:model.live="perPage" name="" id=""><option value="10">10</option><option value="25">25</option><option value="50">50</option></select> entries</label>
         <label>Search:<input type="date" wire:model.live="searchDate" aria-controls="table"><input type="number" placeholder="Registration number" wire:model.live="searchTech" aria-controls="table"></label>
     </div>
-    <table class="odd-color">
+    <table>
         <thead>
             <tr>
                 <th>#</th>
