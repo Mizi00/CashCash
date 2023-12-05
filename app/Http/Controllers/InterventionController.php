@@ -12,31 +12,24 @@ class InterventionController extends Controller
         return view('interventions.index');
     }
 
-    public function show($id)
+    public function show(Intervention $intervention)
     {
-        $intervention = Intervention::findOrFail($id);
-
         return view('interventions.show', compact('intervention'));
     }
 
-    public function edit($id)
+    public function edit(Intervention $intervention)
     {
-        $intervention = Intervention::findOrFail($id);
-
         return view('interventions.edit', compact('intervention'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Intervention $intervention)
     {
         // Check form fields
         $credentials = $request->validate([
-            'datetimevisit' => 'required'
+            'datetimevisit' => 'required|date'
         ]);
 
-        $intervention = Intervention::findOrFail($id);
-
         $intervention->dateTimeVisit = $request->input('datetimevisit');
-
         $intervention->save();
 
         return redirect()->route('interventions.index')->with('success', 'Intervention sheet successfully updated');
