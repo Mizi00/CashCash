@@ -30,6 +30,10 @@ table {
     & > :not(:last-child) > :last-child > * {
         border-bottom-color: currentColor;
     }
+
+    &.odd-color > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
 }
 
 .table-actions {
