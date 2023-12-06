@@ -10,9 +10,25 @@ use Illuminate\Support\Facades\DB;
 class SearchInterventions extends Component
 {
     use WithPagination;
-    
-    public $searchDate, $searchTech, $perPage = 10;
 
+    /**
+     * The search criteria for date.
+     */
+    public $searchDate;
+
+    /**
+     * The search criteria for technician registration number.
+     */
+    public $searchTech;
+
+    /**
+     * Number of items to display per page.
+     */
+    public $perPage = 10;
+
+    /**
+     * Render the Livewire component.
+     */
     public function render()
     {
         $interventions = Intervention::query();            
@@ -27,11 +43,17 @@ class SearchInterventions extends Component
         return view('livewire.search-interventions', compact('interventions'));
     }
 
+    /**
+     * Reset pagination when updating the search date.
+     */
     public function updatingSearchDate()
     {
         $this->gotoPage(1);
     }
 
+    /**
+     * Reset pagination when updating the search technician.
+     */
     public function updatingSearchTech()
     {
         $this->gotoPage(1);

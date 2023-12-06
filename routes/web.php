@@ -29,12 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::view('/table', 'table');
     Route::view('/form', 'form');
 
+    // Group of routes related to interventions
     Route::prefix('interventions')->name('interventions.')->controller(InterventionController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/show/{intervention}', 'show')->name('show');
-
-        Route::get('/edit/{intervention}', 'edit')->name('edit');
-        Route::patch('/update/{intervention}', 'update')->name('update');
+        Route::get('/', 'index')->name('index'); // Display a listing of interventions
+        
+        Route::get('/show/{intervention}', 'show')->name('show'); // Display the specified intervention
+        
+        Route::get('/edit/{intervention}', 'edit')->name('edit'); // Show the form for editing the specified intervention
+        Route::patch('/update/{intervention}', 'update')->name('update'); // Update the specified intervention in database
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
