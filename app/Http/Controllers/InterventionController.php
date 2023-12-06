@@ -51,22 +51,24 @@ class InterventionController extends Controller
         $intervention->update($credentials);
 
         // Update materials
-        foreach ($request->input('materials') as $materialId => $materialData)
-        {
-            // Find the material in the intervention's materials collection based on the given material ID.
-            $material = $intervention->materials()->find($materialId);
+        if ($request->has('materials') && is_array($request->input('materials'))) {
+            foreach ($request->input('materials') as $materialId => $materialData)
+            {
+                // Find the material in the intervention's materials collection based on the given material ID.
+                $material = $intervention->materials()->find($materialId);
 
-            // Validate passingTime and commentWorks for the material
-            $materialValidation = Validator::make($materialData, [
-                'passingTime' => 'required|numeric',
-                'commentWorks' => 'required|string'
-            ]);
+                // Validate passingTime and commentWorks for the material
+                $materialValidation = Validator::make($materialData, [
+                    'passingTime' => 'required|numeric',
+                    'commentWorks' => 'required|string'
+                ]);
 
-            // Updating passingTime and commentWorks attributes for the material
-            $intervention->materials()->updateExistingPivot($materialId, [
-                'passingTime' => $materialData['passingTime'],
-                'commentWorks' => $materialData['commentWorks']
-            ]);
+                // Updating passingTime and commentWorks attributes for the material
+                $intervention->materials()->updateExistingPivot($materialId, [
+                    'passingTime' => $materialData['passingTime'],
+                    'commentWorks' => $materialData['commentWorks']
+                ]);
+            }
         }
 
         // If the validations are correct, then redirect to the list of interventions.

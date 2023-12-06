@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Tests\TestCase;
 use Livewire\Livewire;
 use App\Models\Employee;
+use App\Models\Material;
 use App\Models\Technician;
 use App\Models\Intervention;
 use App\Livewire\SearchInterventions;
@@ -33,6 +34,7 @@ class InterventionsTest extends TestCase
     {
         $technician = Technician::factory()->create();
 
+        // Create an intervention associated with the technician
         $intervention = Intervention::factory()->create([
             'dateTimeVisit' => '2022-11-24 20:00:00',
             'registrationNum' => $technician->id
@@ -51,6 +53,7 @@ class InterventionsTest extends TestCase
         $employee = Employee::factory()->create();
         $technician = Technician::factory()->create(['id' => $employee->id]);
 
+        // Create an intervention
         $intervention = Intervention::factory()->create([
             'dateTimeVisit' => '2022-12-01 15:30:00'
         ]);
@@ -62,11 +65,13 @@ class InterventionsTest extends TestCase
             'dateTimeVisit' => $newDate
         ]);
 
+        // Assert that there are no session errors and the user is redirected
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('interventions.index'));
 
         $updatedIntervention = Intervention::find($intervention->id);
 
+        // Assert that the datetimevisit of the intervention is updated
         $this->assertEquals($newDate, $updatedIntervention->dateTimeVisit);
     }
 
@@ -78,6 +83,7 @@ class InterventionsTest extends TestCase
         $employee1 = Employee::factory()->create();
         $technician1 = Technician::factory()->create(['id' => $employee1->id]);
 
+        // Create an intervention associated with the technician
         $intervention = Intervention::factory()->create([
             'registrationNum' => $technician->id
         ]);
@@ -88,11 +94,54 @@ class InterventionsTest extends TestCase
             'registrationNum' => $technician1->id
         ]);
 
+        // Assert that there are no session errors and the user is redirected
         $response->assertSessionHasNoErrors();
         $response->assertRedirect(route('interventions.index'));
 
         $updatedIntervention = Intervention::find($intervention->id);
 
+        // Assert that the technician id of the intervention is updated
         $this->assertEquals($technician1->id, $updatedIntervention->registrationNum);
+    }
+
+    public function test_can_edit_intervention_material_passingtime_and_commentworks(): void
+    {
+        // Create an employee and a corresponding technician
+        $employee = Employee::factory()->create();
+        $technician = Technician::factory()->create(['id' => $employee->id]);
+
+        // Create an intervention associated with the technician
+        $intervention = Intervention::factory()->create(['registrationNum' => $technician->id]);
+
+        // Create a material associated with the intervention
+        $material = Material::factory()->create();
+        $intervention->materials()->attach($material->id);
+
+        // Act as the employee and attempt to update the material's passingTime and commentWorks
+        $this->actingAs($employee);
+        $response = $this->patch(route('interventions.update', ['intervention' => $intervention->id]), [
+            'dateTimeVisit' => '2022-05-01 15:00:00',
+            'registrationNum' => $technician->id, // Use the same technician
+            'materials' => [
+                $material->id => [
+                    'passingTime' => 2, // New passing time value
+                    'commentWorks' => 'Updated comment', // New comment value
+                ]
+            ]
+        ]);
+
+        // Assert that there are no session errors and the user is redirected
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('interventions.index'));
+
+        // Refresh the intervention from the database
+        $intervention->refresh();
+
+        // Retrieve the updated material from the database
+        $updatedMaterial = $intervention->materials->first();
+
+        // Assert that the passingTime and commentWorks of the material are updated
+        $this->assertEquals(2, $updatedMaterial->pivot->passingTime);
+        $this->assertEquals('Updated comment', $updatedMaterial->pivot->commentWorks);
     }
 }
