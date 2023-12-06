@@ -31,11 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::view('/form', 'form');
 
     // Clients routes
-    Route::prefix('clients')->name('clients.')->group(function () {
-        Route::get('/', [ClientController::class, 'index']);
+    Route::prefix('clients')->name('clients.')->controller(ClientController::class)->group(function () {
+        Route::get('/', 'index');
 
-        Route::get('/show/{id}', [ClientController::class, 'show'])->name('show');
-        Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('edit');
+        Route::get('/show/{client}', 'show')->name('show');
+        
+        Route::get('/edit/{client}', 'edit')->name('edit');
+        Route::patch('/update/{client}', 'update')->name('update');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

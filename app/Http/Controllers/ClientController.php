@@ -12,11 +12,17 @@ class ClientController extends Controller
         return view('clients.index');
     }
 
-    public function show()
+    public function show(Client $client)
     {
+        return view('clients.show', compact('client'));
     }
 
-    public function edit()
+    public function edit(Client $client)
+    {
+        return view('clients.edit', compact('client'));
+    }
+
+    public function update(Client $client)
     {
     }
 }
