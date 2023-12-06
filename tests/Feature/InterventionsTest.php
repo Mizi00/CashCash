@@ -69,4 +69,30 @@ class InterventionsTest extends TestCase
 
         $this->assertEquals($newDate, $updatedIntervention->dateTimeVisit);
     }
+
+    public function test_can_edit_intervention_technician(): void
+    {
+        $employee = Employee::factory()->create();
+        $technician = Technician::factory()->create(['id' => $employee->id]);
+
+        $employee1 = Employee::factory()->create();
+        $technician1 = Technician::factory()->create(['id' => $employee1->id]);
+
+        $intervention = Intervention::factory()->create([
+            'registrationNum' => $technician->id
+        ]);
+
+        $this->actingAs($employee);
+        $response = $this->patch(route('interventions.update', ['intervention' => $intervention->id]), [
+            'dateTimeVisit' => '2022-05-01 15:00:00',
+            'registrationNum' => $technician1->id
+        ]);
+
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect(route('interventions.index'));
+
+        $updatedIntervention = Intervention::find($intervention->id);
+
+        $this->assertEquals($technician1->id, $updatedIntervention->registrationNum);
+    }
 }
