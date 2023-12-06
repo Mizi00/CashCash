@@ -13,13 +13,13 @@
                 @csrf
                 <div class="form-group">
                     <label for="socialReason">Social reason</label>
-                    <input type="text" class="form-control" id="socialReason" value="{{ $client->socialReason }}">
+                    <input type="text" class="form-control" name="socialReason" id="socialReason" value="{{ $client->socialReason }}">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="sirenNum">Siren number</label>
-                        <input type="number" id="sirenNum" class="form-control" value="{{ $client->sirenNum }}">
+                        <input type="number" name="sirenNum" id="sirenNum" class="form-control" value="{{ $client->sirenNum }}">
                     </div>
                     <div class="form-group">
                         <label for="apeCode">Ape code</label>
@@ -29,21 +29,21 @@
                 
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" value="{{ $client->address }}">
+                    <input type="text" class="form-control" name="address" id="address" value="{{ $client->address }}">
                 </div>
                 <div class="form-row">
                 <div class="form-group">
                     <label for="phoneNumber">Phone number</label>
-                    <input type="text" id="phoneNumber" class="form-control" value="{{ $client->phoneNumber }}">
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="{{ $client->phoneNumber }}">
                 </div>
                 <div class="form-group">
                     <label for="faxNum">Fax number</label>
-                    <input type="text" id="faxNum" class="form-control" value="{{ $client->faxNum }}">
+                    <input type="text" name="faxNum" id="faxNum" class="form-control" value="{{ $client->faxNum }}">
                 </div>
                 </div>
                 <div class="form-group">
                     <label for="mailAddress">Mail address</label>
-                    <input type="email" class="form-control" id="mailAddress" value="{{ $client->mailAddress }}">
+                    <input type="email" class="form-control" name="mailAddress" id="mailAddress" value="{{ $client->mailAddress }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
