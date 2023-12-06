@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="apeCode">Ape code</label>
-                        <input type="text" id="apeCode" class="form-control" value="{{ $client->apeCode }}">
+                        <input type="text" id="apeCode" name="apeCode" class="form-control" value="{{ $client->apeCode }}">
                     </div>
                 </div>
                 

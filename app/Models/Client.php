@@ -9,4 +9,5 @@ class Client extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress'];
 }

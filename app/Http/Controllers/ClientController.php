@@ -22,7 +22,20 @@ class ClientController extends Controller
         return view('clients.edit', compact('client'));
     }
 
-    public function update(Client $client)
+    public function update(Request $request, Client $client)
     {
+        $credentials = $request->validate([
+            'socialReason' => 'required',
+            'sirenNum' => 'required|numeric',
+            'apeCode' => 'required',
+            'address' => 'required',
+            'phoneNumber' => 'required|size:10',
+            'faxNum' => 'required|size:10',
+            'mailAddress' => "required|email|unique:clients,mailAddress,$client->id,id"
+        ]);
+
+        $client->update($credentials);
+        
+        return redirect()->route('clients.index');
     }
 }

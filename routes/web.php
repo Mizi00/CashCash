@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
     // Clients routes
     Route::prefix('clients')->name('clients.')->controller(ClientController::class)->group(function () {
-        Route::get('/', 'index');
+        Route::get('/', 'index')->name('index');
 
         Route::get('/show/{client}', 'show')->name('show');
         

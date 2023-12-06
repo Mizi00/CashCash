@@ -13,7 +13,7 @@
            <p><strong>APE Code: </strong>{{ $client->apeCode }}</p>
            <p><strong>Address: </strong>{{ $client->address }}</p>
            <p><strong>Phone Number: </strong>{{ $client->phoneNumber }}</p>
-           <p><strong>Fax Number</strong>{{ $client->faxNumber }}</p>
+           <p><strong>Fax Number: </strong>{{ $client->faxNum }}</p>
            <p><strong>Mail Address: </strong>{{ $client->mailAddress }}</p>
            <p><strong>Agency Number: </strong>{{ $client->agencyNum }}</p>
         </div>
