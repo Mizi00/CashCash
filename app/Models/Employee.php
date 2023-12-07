@@ -33,7 +33,7 @@ class Employee extends Model implements Authenticatable
      */
     public function technician()
     {
-        return $this->hasOne(Technician::class);
+        return $this->hasOne(Technician::class, 'id');
     }
 
     /**
