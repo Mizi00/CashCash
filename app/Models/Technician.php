@@ -20,4 +20,12 @@ class Technician extends Model
     {
         return $this->belongsTo(Employee::class, 'id');
     }
+
+    /**
+     * Define a one-to-many relationship with the Intervention model
+     */
+    public function interventions()
+    {
+        return $this->hasMany(Intervention::class, 'registrationNum');
+    }
 }
