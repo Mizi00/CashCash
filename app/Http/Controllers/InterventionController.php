@@ -6,6 +6,7 @@ use App\Models\Intervention;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class InterventionController extends Controller
 {
@@ -73,5 +74,20 @@ class InterventionController extends Controller
 
         // If the validations are correct, then redirect to the list of interventions.
         return redirect()->route('interventions.index')->with('success', 'Intervention sheet successfully updated');
+    }
+
+    /**
+     * Generate intervention sheet PDF
+     */
+    public function generatePDF(Intervention $intervention)
+    {
+        // Generate pdf content
+        $pdfContent = view('interventions.pdf', ['intervention' => $intervention])->render();
+
+        // Create instance of PDF class
+        $pdf = PDF::loadHTML($pdfContent);
+
+        // Download the pdf
+        return $pdf->download("intervention-$intervention->id.pdf");
     }
 }
