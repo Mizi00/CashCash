@@ -54,6 +54,7 @@
                 </table>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{ route('interventions.pdf', $intervention->id) }}"><button class="btn btn-secondary" type="button">Download PDF</button></a>
             </form>
         </div>
     </main>

@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{intervention}', 'edit')->name('edit'); // Show the form for editing the specified intervention
         Route::patch('/update/{intervention}', 'update')->name('update'); // Update the specified intervention in database
 
-        Route::get('/pdf/{intervention}', 'generatePDF');
+        Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
