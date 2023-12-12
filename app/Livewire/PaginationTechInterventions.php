@@ -16,7 +16,7 @@ class PaginationTechInterventions extends Component
             ->filter(function ($intervention) {
                 return !$intervention->isCompleted();
             })
-            ->sortby(function ($intervention) {
+            ->sortBy(function ($intervention) {
                 return $intervention->client->distanceKm;
             });
             
