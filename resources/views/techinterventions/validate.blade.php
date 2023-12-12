@@ -29,7 +29,7 @@
                             <td>{{ \Carbon\Carbon::parse($material->installationDate)->isoFormat('MMM D, YYYY') }}</td>
                             <td>{{ $material->materialtype->label }}</td>
                             <td>{{ $material->location }}</td>
-                            <td><input type="number" name="materials[{{ $material->id }}][passingTime]"
+                            <td><input type="number" min="1" name="materials[{{ $material->id }}][passingTime]"
                                     value="{{ $material->pivot->passingTime }}"></td>
                             <td><input type="text" name="materials[{{ $material->id }}][commentWorks]"
                                     value="{{ $material->pivot->commentWorks }}"></td>
