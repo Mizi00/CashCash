@@ -11,13 +11,7 @@ class TechInterventionController extends Controller
 {
     public function index()
     {
-        $interventions = Auth::user()->Technician->interventions
-        ->filter(function($intervention){
-            return !$intervention->isCompleted();
-        })->sortby(function($intervention){
-            return $intervention->client->distanceKm;
-        });
-        return view("techinterventions.index", ["interventions" => $interventions]);
+        return view("techinterventions.index");
     }
     public function validateIntervention(Intervention $intervention)
     {
