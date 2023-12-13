@@ -9,8 +9,7 @@ class AssignmentController extends Controller
 {
     public function index()
     {
-        $interventions = Intervention::whereNull('registrationNum')->paginate(10);
-        return view('assignments.index', ['interventions' => $interventions]);
+        return view('assignments.index');
     }
 
     public function edit(Intervention $intervention)
