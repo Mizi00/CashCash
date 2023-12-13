@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TechStatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
-    
+
+    Route::prefix('techstats')->name('techstats.')->controller(TechStatsController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+
+        Route::post('/show', 'show')->name('show');
+    });
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
