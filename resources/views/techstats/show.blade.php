@@ -15,32 +15,54 @@
             On affiche les statistiques de {{ $technician->employee->firstName }} - {{ $date }}
         </div>
         <div class="main-block">
-            <canvas id="bar-chart" width="800" height="450"></canvas>
+          <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
         </div>
     </main>
 </div>
 
 @section('js')
-new Chart(document.getElementById("bar-chart"), {
-    type: 'bar',
+const barCanvas = document.getElementById('barCanvas');
+
+const data = {
+    labels: ['Semaine 1', 'Semaine 2', 'Semaine 3', 'Semaine 4'],
+    interventions: @json($interventionsByWeek),
+    kilometres: @json($kilometersByWeek),
+    duree: @json($timeSpentByWeek)
+};
+
+const barChart = new Chart(barCanvas, {
+    type: 'line',
     data: {
-      labels: ["Africa", "Asia", "Europe"],
-      datasets: [
-        {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-          data: [2478,5267,734,784,433]
-        }
-      ]
+        labels: data.labels,
+        datasets: [
+            {
+                label: 'Interventions réalisées',
+                data: data.interventions
+            },
+            {
+                label: 'Kilomètres parcourus',
+                data: data.kilometres
+            },
+            {
+                label: 'Durée passée à contrôler le matériel',
+                data: data.duree
+            }
+        ]
     },
     options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Predicted world population (millions) in 2050'
-      }
+        scales: {
+            y: {
+                beginAtZero: true,
+                suggestedMax: 200
+            }
+        }
     }
-});
+})
+function updateChartSize() {
+    barChart.resize();
+}
+window.addEventListener('resize', updateChartSize);
+updateChartSize();
 @endsection
 
 @endsection

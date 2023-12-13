@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Technician;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TechStatsController extends Controller
@@ -22,9 +23,18 @@ class TechStatsController extends Controller
 
         $technician = Technician::findOrFail($credentials['registrationNum']);
 
+        $date = Carbon::createFromFormat('Y-m', $credentials['monthyear']);
+
+        $interventionsByWeek = $technician->getInterventionByWeek($date->year, $date->month);
+        $timeSpentByWeek = $technician->getTimeSpentByWeek($date->year, $date->month);
+        $kilometersByWeek = $technician->getKilometersByWeek($date->year, $date->month);
+
         return view("techstats.show", [
             'technician' => $technician,
-            'date' => $credentials['monthyear']
+            'date' => $credentials['monthyear'],
+            'interventionsByWeek' => $interventionsByWeek,
+            'timeSpentByWeek' => $timeSpentByWeek,
+            'kilometersByWeek' => $kilometersByWeek
         ]);
     }
 }
