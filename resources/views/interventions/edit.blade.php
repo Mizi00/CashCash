@@ -27,7 +27,6 @@
                 @endif
 
                 {{-- Materials --}}
-                
                 <table>
                     <thead>
                         <tr>
@@ -40,16 +39,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($intervention->materials as $material)
-                        <tr>
-                            <td>{{ $material->id }}</td>
-                            <td>{{ \Carbon\Carbon::parse($material->installationDate)->isoFormat('MMM D, YYYY') }}</td>
-                            <td>{{ $material->materialtype->label }}</td>
-                            <td>{{ $material->location }}</td>
-                            <td><input type="number" name="materials[{{ $material->id }}][passingTime]" value="{{ $material->pivot->passingTime }}"></td>                       
-                            <td><input type="text" name="materials[{{ $material->id }}][commentWorks]" value="{{ $material->pivot->commentWorks }}"></td>
-                        </tr>
-                        @endforeach
+                        @forelse($intervention->materials as $material)                        
+                            <tr>
+                                <td>{{ $material->id }}</td>
+                                <td>{{ \Carbon\Carbon::parse($material->installationDate)->isoFormat('MMM D, YYYY') }}</td>
+                                <td>{{ $material->materialtype->label }}</td>
+                                <td>{{ $material->location }}</td>
+                                <td><input type="number" name="materials[{{ $material->id }}][passingTime]" value="{{ $material->pivot->passingTime }}"></td>                       
+                                <td><input type="text" name="materials[{{ $material->id }}][commentWorks]" value="{{ $material->pivot->commentWorks }}"></td>
+                            </tr>
+                        @empty
+                            <tr><td colspan="6">No materials found.</td></tr>
+                        @endforelse
                     </tbody>
                 </table>
 
