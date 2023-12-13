@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AssignmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
+
+    Route::prefix('assignments')->name('assignments.')->controller(AssignmentController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/edit/{intervention}', 'edit')->name('edit');
+        Route::patch('/update/{intervention}', 'update')->name('update');
+    });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
