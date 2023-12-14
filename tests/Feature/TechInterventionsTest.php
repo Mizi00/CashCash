@@ -14,8 +14,17 @@ use Livewire\Livewire;
 class TechInterventionsTest extends TestCase
 {
     use DatabaseTransactions;
+
+    /**
+     * Tests the validation of an intervention by a technician.
+     * Creates a technician, intervention, and material records.
+     * Validates if the intervention ID is visible before the update.
+     * Updates the intervention's material with passingTime and commentWorks.
+     * Asserts redirection to the intervention index after the update.
+     * Ensures that the updated intervention ID and client social reason are not visible
+     */
     public function test_can_validate_intervention(): void
-    {        
+    {
         $technician = Technician::factory()->create();
 
         $intervention = Intervention::factory()->create(['registrationNum' => $technician->id]);

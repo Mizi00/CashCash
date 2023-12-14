@@ -29,12 +29,17 @@ Route::middleware('auth')->group(function () {
     Route::view('/table', 'table');
     Route::view('/form', 'form');
 
+    // Routes related to managing technical interventions.
     Route::prefix('techinterventions')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {
+        //Display the list of technician's interventions.
         Route::get('/', 'index')->name('index');
 
+        //Show the validation view for a specific intervention.
         Route::get('/validate/{intervention}', 'validateIntervention')->name('validate');
+        //Update intervention details based on the provided request and intervention instance.
         Route::patch('/update/{intervention}', 'update')->name('update');
-
+        
+        //Generate a PDF for the provided intervention.
         Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
     });
     

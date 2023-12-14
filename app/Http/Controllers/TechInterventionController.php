@@ -10,10 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class TechInterventionController extends Controller
 {
+    /**
+     * Return a view for listing technician's interventions
+     */
     public function index()
     {
         return view("techinterventions.index");
     }
+
+    /**
+     * Validates an intervention and returns a view for validation.
+     */
     public function validateIntervention(Intervention $intervention)
     {
         if ($intervention->isCompleted()) {
@@ -23,6 +30,10 @@ class TechInterventionController extends Controller
         return view('techinterventions.validate', ['intervention' => $intervention]);
     }
 
+
+    /**
+     * Updates intervention details based on the provided request and intervention instance.
+     */
     public function update(Request $request, Intervention $intervention)
     {
         if ($request->has('materials') && is_array($request->input('materials'))) {
@@ -49,6 +60,10 @@ class TechInterventionController extends Controller
         return redirect()->route('techinterventions.index')->with('success', 'Intervention sheet successfully updated');
     }
 
+
+    /**
+     * Generates a PDF for the provided intervention.
+     */
     public function generatePDF(Intervention $intervention)
     {
         // Generate pdf content

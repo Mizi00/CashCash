@@ -10,6 +10,10 @@ use Livewire\WithPagination;
 class PaginationTechInterventions extends Component
 {
     use WithPagination;
+
+    /**
+     * Renders the view for listing technician's interventions with pagination.
+     */
     public function render()
     {
         $interventions = Auth::user()->technician->interventions
@@ -24,6 +28,9 @@ class PaginationTechInterventions extends Component
         return view('livewire.pagination-tech-interventions', ['interventions' => $interventions]);
     }
 
+    /**
+     * Paginates the given items with the specified number of items per page.
+     */
     private function paginate($items, $perPage)
     {
         $currentPage = LengthAwarePaginator::resolveCurrentPage();

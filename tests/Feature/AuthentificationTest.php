@@ -11,6 +11,13 @@ class AuthentificationTest extends TestCase
 {
     use DatabaseTransactions;
 
+    /**
+     * Tests the login functionality for an employee.
+     * Creates an employee for testing.
+     * Attempts to log in using the employee's credentials.
+     * Asserts redirection to the intended URL after successful login.
+     * Asserts that the user is authenticated after login.
+     */
     public function test_employee_can_login(): void
     {
         // Create a employee for testing
