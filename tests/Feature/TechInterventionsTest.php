@@ -38,8 +38,7 @@ class TechInterventionsTest extends TestCase
             ]
         ]);
         $response->assertRedirect(route('techinterventions.index'));
-
-        Livewire::test(PaginationTechInterventions::class)
-            ->assertDontSee($intervention->id);
+        $response->assertDontSee($intervention->id);
+        $response->assertDontSee($intervention->client->socialReason);
     }
 }
