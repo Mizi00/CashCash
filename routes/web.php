@@ -33,8 +33,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
 
         Route::get('/validate/{intervention}', 'validateIntervention')->name('validate');
-
         Route::patch('/update/{intervention}', 'update')->name('update');
+
+        Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
     });
     
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use PDF;
 use App\Models\Intervention;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class TechInterventionController extends Controller
@@ -15,6 +16,10 @@ class TechInterventionController extends Controller
     }
     public function validateIntervention(Intervention $intervention)
     {
+        if ($intervention->isCompleted()) {
+            abort(404);
+        }
+
         return view('techinterventions.validate', ['intervention' => $intervention]);
     }
 
@@ -38,6 +43,21 @@ class TechInterventionController extends Controller
                 ]);
             }
         }
+        if ($intervention->isCompleted()) {
+            return view('techinterventions.showpdf', compact('intervention'));
+        }
         return redirect()->route('techinterventions.index')->with('success', 'Intervention sheet successfully updated');
+    }
+
+    public function generatePDF(Intervention $intervention)
+    {
+        // Generate pdf content
+        $pdfContent = view('interventions.pdf', ['intervention' => $intervention])->render();
+
+        // Create instance of PDF class
+        $pdf = PDF::loadHTML($pdfContent);
+
+        // Download the pdf
+        return $pdf->download("intervention-$intervention->id.pdf");
     }
 }
