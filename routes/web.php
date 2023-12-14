@@ -30,8 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::view('/form', 'form');
 
     Route::prefix('techstats')->name('techstats.')->controller(TechStatsController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
 
+        //Route to display the index view for technician statistics.
+        Route::get('/', 'index')->name('index');
+        
+        //Route to handle displaying technician statistics based on the provided data.
         Route::post('/show', 'show')->name('show');
     });
 

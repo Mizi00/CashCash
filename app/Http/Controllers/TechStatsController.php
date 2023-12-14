@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 
 class TechStatsController extends Controller
 {
+
+    /**
+     * Displays the index view for technician statistics.
+     */
     public function index()
     {
         return view("techstats.index");
-
     }
 
+    /**
+     * Displays statistics for a technician based on the provided request.
+     */
     public function show(Request $request)
     {
         $credentials = $request->validate([
