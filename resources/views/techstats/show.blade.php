@@ -12,7 +12,7 @@
     <main class="main-content">
         <h4 class="main-title">Data tables</h4>
         <div class="main-block">
-            On affiche les statistiques de {{ $technician->employee->firstName }} - {{ $date }}
+            Statistiques du {{ \Carbon\Carbon::parse($date)->format('F Y') }} de {{ $technician->employee->firstName }}
         </div>
         <div class="main-block">
           <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
