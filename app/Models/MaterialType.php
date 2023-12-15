@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MaterialType extends Model
 {
     use HasFactory;
-    
+
     /**
      * Indicates if the model should be timestamped.
      */
