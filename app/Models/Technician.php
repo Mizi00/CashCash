@@ -30,7 +30,7 @@ class Technician extends Model
     {
         return $this->hasMany(Intervention::class, 'registrationNum');
     }
-
+  
     public function getInterventionByWeek($year, $month)
     {
         $result = [0, 0, 0, 0];
