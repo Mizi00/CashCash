@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TechInterventionController;
 use App\Http\Controllers\TechStatsController;
 use App\Http\Controllers\AssignmentController;
 
@@ -30,6 +31,20 @@ Route::middleware('auth')->group(function () {
     Route::view('/table', 'table');
     Route::view('/form', 'form');
 
+    // Routes related to managing technical interventions.
+    Route::prefix('techinterventions')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {
+        //Display the list of technician's interventions.
+        Route::get('/', 'index')->name('index');
+
+        //Show the validation view for a specific intervention.
+        Route::get('/validate/{intervention}', 'validateIntervention')->name('validate');
+        //Update intervention details based on the provided request and intervention instance.
+        Route::patch('/update/{intervention}', 'update')->name('update');
+        
+        //Generate a PDF for the provided intervention.
+        Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
+    });
+
     Route::prefix('techstats')->name('techstats.')->controller(TechStatsController::class)->group(function () {
 
         //Route to display the index view for technician statistics.
@@ -48,7 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{intervention}', 'edit')->name('edit');
         //Update the specified intervention assignment in storage.
         Route::patch('/update/{intervention}', 'update')->name('update');
-    });    
+    });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
