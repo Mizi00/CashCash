@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InterventionController;
 use App\Http\Controllers\TechInterventionController;
 use App\Http\Controllers\TechStatsController;
 use App\Http\Controllers\AssignmentController;
@@ -30,6 +31,18 @@ Route::middleware('auth')->group(function () {
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
+
+    // Group of routes related to interventions
+    Route::prefix('interventions')->name('interventions.')->controller(InterventionController::class)->group(function () {
+        Route::get('/', 'index')->name('index'); // Display a listing of interventions
+        
+        Route::get('/show/{intervention}', 'show')->name('show'); // Display the specified intervention
+        
+        Route::get('/edit/{intervention}', 'edit')->name('edit'); // Show the form for editing the specified intervention
+        Route::patch('/update/{intervention}', 'update')->name('update'); // Update the specified intervention in database
+
+        Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
+    });  
 
     // Routes related to managing technical interventions.
     Route::prefix('techinterventions')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {

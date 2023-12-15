@@ -17,7 +17,7 @@ class Material extends Model
     /**
      * Define a many-to-one relationship with the MaterialType model using the 'internalRef' as the foreign key.
      */
-    public function materialtype()
+    public function materialtype() 
     {
         return $this->belongsTo(MaterialType::class, 'internalRef', 'internalRef');
     }
