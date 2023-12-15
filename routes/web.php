@@ -29,10 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::view('/table', 'table');
     Route::view('/form', 'form');
 
+    //Routes for managing assignments related to interventions.
     Route::prefix('assignments')->name('assignments.')->controller(AssignmentController::class)->group(function(){
+        //Display a listing of assignments.
         Route::get('/', 'index')->name('index');
 
+        //Show the form for editing the specified intervention assignment.
         Route::get('/edit/{intervention}', 'edit')->name('edit');
+        //Update the specified intervention assignment in storage.
         Route::patch('/update/{intervention}', 'update')->name('update');
     });
     
