@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use Carbon\Carbon;
 use Tests\TestCase;
+use App\Models\Helper;
+use App\Models\Employee;
 use App\Models\Technician;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -21,9 +23,12 @@ class TechStatsTest extends TestCase
      */
     public function test_it_displays_technician_statistics(): void
     {
+        $employeeActing = Employee::factory()->create();
+        Helper::factory()->create(['id' => $employeeActing->id]);
+        
         $technician = Technician::factory()->create();
 
-        $this->actingAs($technician->employee);
+        $this->actingAs($employeeActing);
         $response = $this->get(route('techstats.index'));
         $response->assertStatus(200);
 

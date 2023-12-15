@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Carbon\Carbon;
 use Tests\TestCase;
+use App\Models\Helper;
 use Livewire\Livewire;
 use App\Models\Employee;
 use App\Models\Material;
@@ -51,7 +52,7 @@ class InterventionsTest extends TestCase
     public function test_can_edit_intervention_date(): void
     {
         $employee = Employee::factory()->create();
-        $technician = Technician::factory()->create(['id' => $employee->id]);
+        Helper::factory()->create(['id' => $employee->id]);
 
         // Create an intervention
         $intervention = Intervention::factory()->create([
@@ -77,6 +78,9 @@ class InterventionsTest extends TestCase
 
     public function test_can_edit_intervention_technician(): void
     {
+        $employeeActing = Employee::factory()->create();
+        Helper::factory()->create(['id' => $employeeActing->id]);
+
         $employee = Employee::factory()->create();
         $technician = Technician::factory()->create(['id' => $employee->id]);
 
@@ -88,7 +92,7 @@ class InterventionsTest extends TestCase
             'registrationNum' => $technician->id
         ]);
 
-        $this->actingAs($employee);
+        $this->actingAs($employeeActing);
         $response = $this->patch(route('interventions.update', ['intervention' => $intervention->id]), [
             'dateTimeVisit' => '2022-05-01 15:00:00',
             'registrationNum' => $technician1->id
@@ -106,6 +110,9 @@ class InterventionsTest extends TestCase
 
     public function test_can_edit_intervention_material_passingtime_and_commentworks(): void
     {
+        $employeeActing = Employee::factory()->create();
+        Helper::factory()->create(['id' => $employeeActing->id]);
+        
         // Create an employee and a corresponding technician
         $employee = Employee::factory()->create();
         $technician = Technician::factory()->create(['id' => $employee->id]);
@@ -118,7 +125,7 @@ class InterventionsTest extends TestCase
         $intervention->materials()->attach($material->id);
 
         // Act as the employee and attempt to update the material's passingTime and commentWorks
-        $this->actingAs($employee);
+        $this->actingAs($employeeActing);
         $response = $this->patch(route('interventions.update', ['intervention' => $intervention->id]), [
             'dateTimeVisit' => '2022-05-01 15:00:00',
             'registrationNum' => $technician->id, // Use the same technician
