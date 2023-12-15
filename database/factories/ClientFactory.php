@@ -25,6 +25,8 @@ class ClientFactory extends Factory
             'phoneNumber' =>fake()->numerify('06########'),
             'faxNum' => fake()->numerify('0#########'),
             'mailAddress' => fake()->unique()->safeEmail(),
+            'distanceKm' => fake()->randomFloat(2, 1, 1000),
+            'travelTime' => fake()->randomFloat(2, 1, 1440),
             'agencyNum' => Agency::inRandomOrder()->pluck('id')->first()
          ];
     }

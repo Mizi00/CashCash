@@ -20,13 +20,14 @@ return new class extends Migration
             $table->string('phoneNumber', 10);
             $table->string('faxNum', 10);
             $table->string('mailAddress', 255)->unique();
+            $table->float('distanceKm', 6, 2);
+            $table->float('travelTime', 6, 2);
 
             //clé étrangères
             $table->unsignedBigInteger('agencyNum');
 
             //relation avec les tables
             $table->foreign('agencyNum')->references('id')->on('agencies');
-
         });
     }
 
