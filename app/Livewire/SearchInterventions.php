@@ -5,7 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Intervention;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\DB;
 
 class SearchInterventions extends Component
 {
@@ -36,7 +35,7 @@ class SearchInterventions extends Component
         if ($this->searchTech) {
             $interventions->where('registrationNum', $this->searchTech);
         } elseif ($this->searchDate) {
-            $interventions->where(DB::raw('DATE_FORMAT(dateTimeVisit, "%Y-%m-%d")'), $this->searchDate);
+            $interventions->whereDate('dateTimeVisit', $this->searchDate);
         }
         $interventions = $interventions->paginate($this->perPage);
 
