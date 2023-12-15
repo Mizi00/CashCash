@@ -45,9 +45,10 @@ class TechInterventionsTest extends TestCase
                     'commentWorks' => 'New comment works'
                 ]
             ]
-        ]);
-        $response->assertRedirect(route('techinterventions.index'));
-        $response->assertDontSee($intervention->id);
-        $response->assertDontSee($intervention->client->socialReason);
+        ]);        
+        $response->assertStatus(200);
+
+        $response->assertViewIs('techinterventions.showpdf');
+        $this->assertTrue($intervention->isCompleted());
     }
 }
