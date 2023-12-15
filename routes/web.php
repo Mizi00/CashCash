@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TechInterventionController;
+use App\Http\Controllers\TechStatsController;
+use App\Http\Controllers\AssignmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,26 @@ Route::middleware('auth')->group(function () {
         //Generate a PDF for the provided intervention.
         Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
     });
-    
+
+    Route::prefix('techstats')->name('techstats.')->controller(TechStatsController::class)->group(function () {
+
+        //Route to display the index view for technician statistics.
+        Route::get('/', 'index')->name('index');
+        
+        //Route to handle displaying technician statistics based on the provided data.
+        Route::post('/show', 'show')->name('show');
+    });
+
+    //Routes for managing assignments related to interventions.
+    Route::prefix('assignments')->name('assignments.')->controller(AssignmentController::class)->group(function(){
+        //Display a listing of assignments.
+        Route::get('/', 'index')->name('index');
+
+        //Show the form for editing the specified intervention assignment.
+        Route::get('/edit/{intervention}', 'edit')->name('edit');
+        //Update the specified intervention assignment in storage.
+        Route::patch('/update/{intervention}', 'update')->name('update');
+    });
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

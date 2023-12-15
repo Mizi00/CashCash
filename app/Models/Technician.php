@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Technician extends Model
 {
@@ -27,5 +29,74 @@ class Technician extends Model
     public function interventions()
     {
         return $this->hasMany(Intervention::class, 'registrationNum');
+    }
+  
+    public function getInterventionByWeek($year, $month)
+    {
+        $result = [0, 0, 0, 0];
+
+        $interventionsByWeek = $this->interventions()
+            ->whereYear('dateTimeVisit', $year)
+            ->whereMonth('dateTimeVisit', $month)
+            ->whereNotNull('dateTimeVisit')
+            ->get();
+
+        foreach ($interventionsByWeek as $intervention) {
+            if ($intervention->isCompleted()) {
+                $week = Carbon::parse($intervention->dateTimeVisit)->weekOfMonth;
+                $week = $week === 5 ? 4 : $week;
+
+                if ($week >= 1 && $week <= 4) {
+                    $result[$week - 1]++;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function getKilometersByWeek($year, $month)
+    {
+        $result = [0, 0, 0, 0];
+
+        $interventionsByWeek = $this->interventions()
+            ->whereYear('dateTimeVisit', $year)
+            ->whereMonth('dateTimeVisit', $month)
+            ->whereNotNull('dateTimeVisit')
+            ->get();
+
+        foreach ($interventionsByWeek as $intervention) {
+            if ($intervention->isCompleted()) {
+                $week = Carbon::parse($intervention->dateTimeVisit)->weekOfMonth;
+                $week = $week === 5 ? 4 : $week;
+
+                if ($week >= 1 && $week <= 4) {
+                    $result[$week - 1] += $intervention->client->distanceKm;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function getTimeSpentByWeek($year, $month)
+    {
+        $result = [0, 0, 0, 0];
+
+        $interventionsByWeek = $this->interventions()
+            ->whereYear('dateTimeVisit', $year)
+            ->whereMonth('dateTimeVisit', $month)
+            ->whereNotNull('dateTimeVisit')
+            ->get();
+
+        foreach ($interventionsByWeek as $intervention) {
+            if ($intervention->isCompleted()) {
+                $week = Carbon::parse($intervention->dateTimeVisit)->weekOfMonth;
+                $week = $week === 5 ? 4 : $week;
+
+                if ($week >= 1 && $week <= 4) {
+                    $result[$week - 1] += $intervention->materials->sum('pivot.passingTime');
+                }
+            }
+        }
+        return $result;
     }
 }
