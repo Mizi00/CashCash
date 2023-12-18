@@ -6,7 +6,7 @@
 
 <div class="page-container">
     <main class="main-content">
-        <h4 class="main-title">Data tables</h4>
+        <h4 class="main-title">Validations</h4>
         <div class="main-block">
             @livewire('pagination-tech-interventions')
         </div>
