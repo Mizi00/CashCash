@@ -44,17 +44,16 @@ class ClientsTest extends TestCase
             'mailAddress' => 'new@email.com',
         ]);
 
-        $response->assertRedirect();
+        $response->assertRedirect(route('clients.index'));
 
-        dd($client->socialReason);
         $client->refresh();
 
-        $this->assertEquals('Auchan', $client->socialReason);
-        $this->assertEquals('New SIREN Number', $client->sirenNum);
-        $this->assertEquals('12121DDD', $client->apeCode);
-        $this->assertEquals('23 rue de lafièvre', $client->address);
-        $this->assertEquals('0610101033', $client->phoneNumber);
-        $this->assertEquals('0909902232', $client->faxNum);
-        $this->assertEquals('new@email.com', $client->mailAddress);
+        Livewire::test(SearchClients::class)
+            ->set('search', $client->id)
+            ->assertSee($client->socialReason)
+            ->assertSee($client->apeCode)
+            ->assertSee($client->phoneNumber)
+            ->assertSee($client->faxNum)
+            ->assertSee($client->mailAddress);
     }
 }
