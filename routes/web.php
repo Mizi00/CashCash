@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InterventionController;
 use App\Http\Controllers\TechInterventionController;
 use App\Http\Controllers\TechStatsController;
@@ -27,10 +28,21 @@ Route::middleware('guest')->group(function () {
 // Route where only authenticated employees can access
 Route::middleware('auth')->group(function () {
 
+    // Design routes
     Route::view('/', 'home');
     Route::view('/stats', 'stats');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
+
+    // Clients routes
+    Route::prefix('clients')->name('clients.')->controller(ClientController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/show/{client}', 'show')->name('show');
+        
+        Route::get('/edit/{client}', 'edit')->name('edit');
+        Route::patch('/update/{client}', 'update')->name('update');
+    });
 
     // Routes related to managing technical interventions allowed only by technician.
     Route::prefix('techinterventions')->middleware('checktechnician')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {

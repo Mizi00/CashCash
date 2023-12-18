@@ -13,4 +13,5 @@ class Client extends Model
      * Indicates if the model should be timestamped.
      */
     public $timestamps = false;
+    protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress'];
 }
