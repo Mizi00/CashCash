@@ -28,21 +28,10 @@ Route::middleware('guest')->group(function () {
 // Route where only authenticated employees can access
 Route::middleware('auth')->group(function () {
 
-    // Design routes
-    Route::view('/', 'home');
-    Route::view('/stats', 'stats');
+    // Design routes    
+    Route::view('/stats', 'stats')->middleware('checkhelper')->name('index');
     Route::view('/table', 'table');
     Route::view('/form', 'form');
-
-    // Clients routes
-    Route::prefix('clients')->name('clients.')->controller(ClientController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-
-        Route::get('/show/{client}', 'show')->name('show');
-        
-        Route::get('/edit/{client}', 'edit')->name('edit');
-        Route::patch('/update/{client}', 'update')->name('update');
-    });
 
     // Routes related to managing technical interventions allowed only by technician.
     Route::prefix('techinterventions')->middleware('checktechnician')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {
@@ -60,6 +49,17 @@ Route::middleware('auth')->group(function () {
 
     // Route only allowed for helpers
     Route::middleware('checkhelper')->group(function () {
+
+        // Clients routes
+        Route::prefix('clients')->name('clients.')->controller(ClientController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+
+            Route::get('/show/{client}', 'show')->name('show');
+            
+            Route::get('/edit/{client}', 'edit')->name('edit');
+            Route::patch('/update/{client}', 'update')->name('update');
+        });
+
         // Group of routes related to interventions
         Route::prefix('interventions')->name('interventions.')->controller(InterventionController::class)->group(function () {
             Route::get('/', 'index')->name('index'); // Display a listing of interventions

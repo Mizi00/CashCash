@@ -2,7 +2,13 @@
     <div class="sidebar-logo">CashCash</div>
     <ul class="sidebar-menu">
         <!-- Sidebar menu item -->
-        @if(!auth()->user()->isTechnician())        
+        @if(!auth()->user()->isTechnician())
+        <li>
+            <a href="{{ route('index') }}">
+                <span class="icon"><i class="fa-solid fa-house-chimney"></i></span>
+                <span class="title">Dashboard</span>
+            </a>
+        </li>
         <li>
             <a href="{{ route('clients.index') }}">
                 <span class="icon"><i class="fa-solid fa-user"></i></span>
