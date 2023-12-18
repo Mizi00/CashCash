@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+    
+    /**
+     * Indicates if the model should be timestamped.
+     */
     public $timestamps = false;
     protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress'];
 }
