@@ -10,19 +10,6 @@
                 </a>
                 <ul class="navbar-auth-dropdown">
                     <li>
-                        <a href="">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
                         <a href="{{ route('logout') }}">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span>Logout</span>
