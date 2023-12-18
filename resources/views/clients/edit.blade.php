@@ -6,7 +6,7 @@
 
 <div class="page-container">
     <main class="main-content">
-        <h4 class="main-title">Data tables</h4>
+        <h4 class="main-title">Edition client</h4>
         <div class="main-block">
             <form action="{{ route('clients.update', $client->id) }}" method="post">
                 @method('PATCH')

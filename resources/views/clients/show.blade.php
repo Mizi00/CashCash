@@ -6,7 +6,7 @@
 
 <div class="page-container">
     <main class="main-content">
-        <h4 class="main-title">Data tables</h4>
+        <h4 class="main-title">Visualization client</h4>
         <div class="main-block">
            <p><strong>Id Client: </strong>{{ $client->id }}</p>
            <p><strong>Social Reason: </strong>{{ $client->socialReason }}</p>

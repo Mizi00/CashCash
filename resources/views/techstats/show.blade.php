@@ -10,7 +10,7 @@
 
 <div class="page-container">
     <main class="main-content">
-        <h4 class="main-title">Data tables</h4>
+        <h4 class="main-title">Statistics</h4>
         <div class="main-block">
             Statistiques du {{ \Carbon\Carbon::parse($date)->format('F Y') }} de {{ $technician->employee->firstName }}
         </div>
