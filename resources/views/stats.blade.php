@@ -12,7 +12,6 @@
     <main class="main-content">          
         <div class="stats-width">
             <div class="stats-cards">
-
                 <div class="stats-card">
                     <div class="stats-layer-top"><span>Total Clients</span></div>
                     <div class="stats-layer-bottom">
@@ -22,7 +21,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="stats-card">
                     <div class="stats-layer-top"><span>Total Technicians</span></div>
                     <div class="stats-layer-bottom">
@@ -32,7 +30,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="stats-card">
                     <div class="stats-layer-top"><span>Total Unassigned Intervention</span></div>
                     <div class="stats-layer-bottom">
@@ -42,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="stats-card">
                     <div class="stats-layer-top"><span>Total Interventions</span></div>
                     <div class="stats-layer-bottom">
@@ -52,8 +48,6 @@
                         </div>
                     </div>
                 </div>
-                
-
             </div>
         </div>
     </main>
