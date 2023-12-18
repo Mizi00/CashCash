@@ -30,6 +30,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+
+            if(Auth::user()->isTechnician())
+            {
+                return redirect()->route('techinterventions.index');
+            }
             return redirect()->intended('stats');
         }
 
