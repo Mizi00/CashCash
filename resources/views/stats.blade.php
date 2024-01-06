@@ -62,11 +62,11 @@ const barCanvas = document.getElementById('barCanvas');
 const barChart = new Chart(barCanvas, {
     type: 'bar',
     data: {
-        labels: ['Total Clients', 'Total Interventions', 'Total Technicians', 'Total Unassigned Intervention'],
+        labels: ['Total Clients', 'Total Technicians', 'Total Unassigned Intervention', 'Total Interventions'],
         datasets: [
             {
                 label: 'Totals',
-                data: [{{ \App\Models\Client::count() }}, {{ \App\Models\Intervention::count() }}, {{ \App\Models\Technician::count() }}, {{ \App\Models\Intervention::where('registrationNum', null)->count() }}],
+                data: [{{ \App\Models\Client::count() }}, {{ \App\Models\Technician::count() }}, {{ \App\Models\Intervention::where('registrationNum', null)->count() }}, {{ \App\Models\Intervention::count() }}],
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(54, 162, 235)',
