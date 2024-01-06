@@ -42,3 +42,11 @@ if (sidebar && navbarMenu && mask) {
         document.body.classList.remove('overflow-hidden');
     });
 }
+
+const alertClose = document.getElementById('main-alert-close');
+if (alertClose) {
+    alertClose.addEventListener('click', () => {
+        let mainAlert = document.querySelector('.main-alert');
+        mainAlert.parentNode.removeChild(mainAlert);
+    });
+}

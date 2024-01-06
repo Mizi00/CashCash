@@ -36,6 +36,6 @@ class ClientController extends Controller
 
         $client->update($credentials);
         
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Client successfully updated');
     }
 }

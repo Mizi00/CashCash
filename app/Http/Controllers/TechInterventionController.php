@@ -61,7 +61,7 @@ class TechInterventionController extends Controller
         if ($intervention->isCompleted()) {
             return view('techinterventions.showpdf', compact('intervention'));
         }
-        return redirect()->route('techinterventions.index')->with('success', 'Intervention sheet successfully updated');
+        return redirect()->route('techinterventions.index')->with('success', 'Intervention sheet successfully updated. To validate the update, ensure all materials have passing time and comments filled out.');
     }
 
 

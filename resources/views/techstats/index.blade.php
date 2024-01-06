@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label for="registrationNum">Registration number</label>
                         <input type="number" min="1" name="registrationNum" id="registrationNum" class="form-control @error('registrationNum') form-error-input @enderror"
-                            value="number">
+                            value="number" required>
                         @error('registrationNum')
                             <div class="form-error-input-text">{{ $message }}</div>
                         @enderror
