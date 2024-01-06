@@ -74,6 +74,11 @@ $sidebar-width: 280px;
                 text-align: center;
                 width: 35px;
             }
+
+            &.active {
+                color: #313435;
+                background-color: $bg-color-opacity;
+            }
         }
     }
 }
