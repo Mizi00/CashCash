@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Technician;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
 
@@ -44,8 +45,15 @@ class AssignmentController extends Controller
             'registrationNum' => 'required|exists:technicians,id'
         ]);
 
-        $intervention->update($credentials);
+        // Check if technician is in same agency as client
+        $technician = Technician::find($credentials['registrationNum']);
+        if ($technician->agencyNum === $intervention->client->agencyNum) 
+        {
+            $intervention->update($credentials);
 
-        return redirect()->route('assignments.index')->with('success', 'Intervention assigned.');
+            return redirect()->route('assignments.index')->with('success', 'Intervention assigned.');
+        }        
+
+        return redirect()->back()->withErrors(['registrationNum' => 'The agencies are not the same.']);
     }
 }
