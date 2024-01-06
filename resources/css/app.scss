@@ -4,6 +4,10 @@ $default-color: #2196f3;
 
 $responsive-width: 950px;
 
+body {
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,sans-serif;
+}
+
 @import 'reset';
 @import 'sidebar';
 @import 'navbar';
