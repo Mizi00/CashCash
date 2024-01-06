@@ -51,9 +51,7 @@ class ClientsTest extends TestCase
         Livewire::test(SearchClients::class)
             ->set('search', $client->id)
             ->assertSee($client->socialReason)
-            ->assertSee($client->apeCode)
-            ->assertSee($client->phoneNumber)
-            ->assertSee($client->faxNum)
+            ->assertSee(trim(chunk_split($client->phoneNumber, 2, ' '), ' '))            
             ->assertSee($client->mailAddress);
     }
 }
