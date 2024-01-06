@@ -9,7 +9,7 @@
                 <th>ID</th>
                 <th>Social Reason</th>
                 <th>SIREN Number</th>
-                <th>APE Code</th>
+                <!-- <th>APE Code</th> -->
                 <th>Phone Number</th>
                 <!-- <th>Fax Number</th> -->
                 <th>Address</th>
@@ -22,9 +22,9 @@
                 <tr>
                     <td>{{ $client->id }}</td>
                     <td>{{ $client->socialReason }}</td>
-                    <td>{{ $client->sirenNum }}</td>
-                    <td>{{ $client->apeCode }}</td>
-                    <td>{{ $client->phoneNumber }}</td>
+                    <td>{{ trim(chunk_split($client->sirenNum, 3, ' '), ' ') }}</td>
+                    <!-- <td>{{ $client->apeCode }}</td> -->
+                    <td>{{ trim(chunk_split($client->phoneNumber, 2, ' '), ' ') }}</td>
                     <!--<td>{{ $client->faxNum }}</td>-->
                     <td>{{ $client->address }}</td>
                     <td>{{ $client->mailAddress }}</td>

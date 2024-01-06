@@ -14,4 +14,12 @@ class Client extends Model
      */
     public $timestamps = false;
     protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress'];
+
+    /**
+     * Get the associated agency for this client.
+     */
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class, 'agencyNum');
+    }
 }
