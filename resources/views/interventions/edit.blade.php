@@ -13,14 +13,20 @@
                 @method('PATCH')
                 <div class="form-group">
                     <label for="dateTimeVisit">Date of visit</label>
-                    <input type="datetime-local" name="dateTimeVisit" id="dateTimeVisit" class="form-control" value="{{ $intervention->dateTimeVisit }}">
+                    <input type="datetime-local" name="dateTimeVisit" id="dateTimeVisit" class="form-control @error('dateTimeVisit') form-error-input @enderror" value="{{ $intervention->dateTimeVisit }}">
+                    @error('dateTimeVisit')
+                        <div class="form-error-input-text">{{ $message }}</div>
+                    @enderror
                 </div>
                 @if($intervention->technician == null)
                     <fieldset disabled="disabled">
                 @endif
                     <div class="form-group">
                         <label for="registrationNum">Registration number</label>
-                        <input type="number" name="registrationNum" id="registrationNum" class="form-control" value="{{ optional($intervention->technician)->id ?? '' }}" placeholder="{{ $intervention->technician === null ? 'No technician assigned' : '' }}">
+                        <input type="number" name="registrationNum" id="registrationNum" class="form-control @error('registrationNum') form-error-input @enderror" value="{{ optional($intervention->technician)->id ?? '' }}" placeholder="{{ $intervention->technician === null ? 'No technician assigned' : '' }}">
+                        @error('registrationNum')
+                            <div class="form-error-input-text">{{ $message }}</div>
+                        @enderror
                     </div>
                 @if($intervention->technician == null)
                     </fieldset>
@@ -45,7 +51,9 @@
                                 <td>{{ \Carbon\Carbon::parse($material->installationDate)->isoFormat('MMM D, YYYY') }}</td>
                                 <td>{{ $material->materialtype->label }}</td>
                                 <td>{{ $material->location }}</td>
-                                <td><input type="number" name="materials[{{ $material->id }}][passingTime]" value="{{ $material->pivot->passingTime }}"></td>                       
+                                <td>
+                                    <input type="number" name="materials[{{ $material->id }}][passingTime]" value="{{ $material->pivot->passingTime }}">
+                                </td>                       
                                 <td><input type="text" name="materials[{{ $material->id }}][commentWorks]" value="{{ $material->pivot->commentWorks }}"></td>
                             </tr>
                         @empty
@@ -53,6 +61,11 @@
                         @endforelse
                     </tbody>
                 </table>
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="form-error-input-text">{{ $error }}</div>
+                    @endforeach
+                @endif
 
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <a href="{{ route('interventions.pdf', $intervention->id) }}"><button class="btn btn-secondary" type="button">Download PDF</button></a>
