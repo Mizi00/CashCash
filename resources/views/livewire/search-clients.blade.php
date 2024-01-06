@@ -9,9 +9,7 @@
                 <th>ID</th>
                 <th>Social Reason</th>
                 <th>SIREN Number</th>
-                <!-- <th>APE Code</th> -->
                 <th>Phone Number</th>
-                <!-- <th>Fax Number</th> -->
                 <th>Address</th>
                 <th>Email</th>
                 <th></th>
@@ -23,9 +21,7 @@
                     <td>{{ $client->id }}</td>
                     <td>{{ $client->socialReason }}</td>
                     <td>{{ trim(chunk_split($client->sirenNum, 3, ' '), ' ') }}</td>
-                    <!-- <td>{{ $client->apeCode }}</td> -->
                     <td>{{ trim(chunk_split($client->phoneNumber, 2, ' '), ' ') }}</td>
-                    <!--<td>{{ $client->faxNum }}</td>-->
                     <td>{{ $client->address }}</td>
                     <td>{{ $client->mailAddress }}</td>
                     <td><div class="table-actions"><a href="{{ route('clients.show', $client->id) }}"><i class="fa-regular fa-eye"></i></a><a href="{{ route('clients.edit', $client->id) }}"><i class="fa-regular fa-pen-to-square"></i></a></div></td>
