@@ -33,7 +33,7 @@ class AssignmentTest extends TestCase
         $intervention = Intervention::factory()->create();
 
         // Create a technician and act as the technician's employee
-        $technician = Technician::factory()->create();
+        $technician = Technician::factory()->create(['agencyNum' => $intervention->client->agencyNum]);
         $this->actingAs($employee);
 
         // Make a request to assign the technician to the intervention
