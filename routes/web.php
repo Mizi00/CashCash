@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\InterventionController;
-use App\Http\Controllers\TechInterventionController;
 use App\Http\Controllers\TechStatsController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\InterventionController;
+use App\Http\Controllers\TechInterventionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,18 @@ Route::middleware('auth')->group(function () {
 
     // Design routes    
     Route::view('/stats', 'stats')->middleware('checkhelper')->name('index');
-    Route::view('/table', 'table');
-    Route::view('/form', 'form');
+    /*Route::view('/table', 'table');
+    Route::view('/form', 'form');*/
+
+    Route::get('/', function () {
+        if (Auth::user()->isTechnician()) {
+            // If the user is a technician, redirect to a technician-specific route
+            return redirect()->route('techinterventions.index');
+        } else {
+            // If the user is not a technician, redirect to a different route
+            return redirect()->route('index');
+        }
+    });
 
     // Routes related to managing technical interventions allowed only by technician.
     Route::prefix('techinterventions')->middleware('checktechnician')->name('techinterventions.')->controller(TechInterventionController::class)->group(function () {
