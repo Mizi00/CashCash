@@ -21,4 +21,12 @@ class SearchClients extends Component
 
         return view('livewire.search-clients', compact('clients'));
     }
+
+    /**
+     * Reset pagination when updating the search.
+     */
+    public function updatingSearch()
+    {
+        $this->gotoPage(1);
+    }
 }
