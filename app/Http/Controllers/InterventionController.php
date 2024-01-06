@@ -60,14 +60,18 @@ class InterventionController extends Controller
 
                 // Validate passingTime and commentWorks for the material
                 $materialValidation = Validator::make($materialData, [
-                    'passingTime' => 'required|numeric',
-                    'commentWorks' => 'required|string'
+                    'passingTime' => 'nullable|sometimes|numeric',
+                    'commentWorks' => 'nullable|sometimes|min:3'
                 ]);
+
+                if ($materialValidation->fails()) {
+                    return redirect()->back()->withErrors($materialValidation);
+                }
 
                 // Updating passingTime and commentWorks attributes for the material
                 $intervention->materials()->updateExistingPivot($materialId, [
-                    'passingTime' => $materialData['passingTime'],
-                    'commentWorks' => $materialData['commentWorks']
+                    'passingTime' => $materialData['passingTime'] ?? null,
+                    'commentWorks' => $materialData['commentWorks'] ?? null
                 ]);
             }
         }
