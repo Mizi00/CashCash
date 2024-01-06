@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Statistics')
+
 @section('body')
 <x-navbar />
 <x-sidebar />

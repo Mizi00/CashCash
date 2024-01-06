@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "Visualization intervention #$intervention->id")
+
 @section('body')
 <x-navbar/>
 <x-sidebar/>

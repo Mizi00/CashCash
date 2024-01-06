@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Statistics')
+
 @php
     $chartNeeded = 1;
 @endphp

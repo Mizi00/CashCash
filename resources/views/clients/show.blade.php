@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Visualization client')
+
 @section('body')
 <x-navbar/>
 <x-sidebar/>
