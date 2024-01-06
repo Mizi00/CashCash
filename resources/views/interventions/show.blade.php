@@ -20,6 +20,34 @@
             @endphp
             <p><strong>Intervention date:</strong> {{ $formattedDate }}</p>
             <p><strong>Number of materials:</strong> {{ $intervention->number_of_materials }}</p>
+
+            {{-- Materials --}}
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Installation date</th>
+                        <th>Label</th>
+                        <th>Location</th>
+                        <th>Passing time</th>
+                        <th>Comment works</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($intervention->materials as $material)
+                        <tr>
+                            <td>{{ $material->id }}</td>
+                            <td>{{ \Carbon\Carbon::parse($material->installationDate)->isoFormat('MMM D, YYYY') }}</td>
+                            <td>{{ $material->materialtype->label }}</td>
+                            <td>{{ $material->location }}</td>
+                            <td>{{ $material->pivot->passingTime ?? 'N/A' }}</td>
+                            <td>{{ $material->pivot->commentWorks ?? 'N/A'}}</td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="6">No materials found.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </main>
 </div>
