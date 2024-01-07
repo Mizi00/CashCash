@@ -38,6 +38,7 @@ class ClientsTest extends TestCase
             'socialReason' => 'Auchan',
             'sirenNum' => '000000',
             'apeCode' => '12121DDD',
+            'distanceKm' => '544.21',
             'address' => '23 rue de lafièvre',
             'phoneNumber' => '0610101033',
             'faxNum' => '0909902232',
