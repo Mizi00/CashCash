@@ -36,12 +36,18 @@
                             <div class="form-error-input-text">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
-                
+                </div>                
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" class="form-control @error('address') form-error-input @enderror" name="address" id="address" value="{{ $client->address }}">
                     @error('address')
+                        <div class="form-error-input-text">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="distanceKm">Distance KM</label>
+                    <input type="number" class="form-control @error('distanceKm') form-error-input @enderror" step="0.01" name="distanceKm" id="distanceKm" value="{{ $client->distanceKm }}">
+                    @error('distanceKm')
                         <div class="form-error-input-text">{{ $message }}</div>
                     @enderror
                 </div>

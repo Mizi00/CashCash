@@ -13,7 +13,7 @@ class Client extends Model
      * Indicates if the model should be timestamped.
      */
     public $timestamps = false;
-    protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress'];
+    protected $fillable = ['socialReason', 'sirenNum', 'apeCode', 'address', 'phoneNumber', 'faxNum', 'mailAddress', 'distanceKm'];
 
     /**
      * Get the associated agency for this client.

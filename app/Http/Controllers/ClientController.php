@@ -29,6 +29,7 @@ class ClientController extends Controller
             'sirenNum' => 'required|numeric',
             'apeCode' => 'required',
             'address' => 'required',
+            'distanceKm' => 'required|numeric|min:1|max:2000',
             'phoneNumber' => 'required|size:10',
             'faxNum' => 'required|size:10',
             'mailAddress' => "required|email|unique:clients,mailAddress,$client->id,id"
