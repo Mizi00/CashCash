@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Technician;
 use App\Models\Intervention;
 use Livewire\WithPagination;
 
@@ -39,7 +40,11 @@ class SearchInterventions extends Component
         }
         $interventions = $interventions->paginate($this->perPage);
 
-        return view('livewire.search-interventions', compact('interventions'));
+        $technicians = Technician::join('employees', 'technicians.id', '=', 'employees.id')
+            ->orderBy('employees.firstName')
+            ->get();
+
+        return view('livewire.search-interventions', compact('interventions', 'technicians'));
     }
 
     /**

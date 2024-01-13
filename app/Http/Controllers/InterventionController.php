@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use App\Models\Technician;
 use App\Models\Intervention;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
-use PDF;
 
 class InterventionController extends Controller
 {
@@ -31,7 +32,12 @@ class InterventionController extends Controller
      */
     public function edit(Intervention $intervention)
     {
-        return view('interventions.edit', compact('intervention'));
+        $technicians = Technician::join('employees', 'technicians.id', '=', 'employees.id')
+            ->where('technicians.agencyNum', '=', $intervention->client->agencyNum)
+            ->orderBy('employees.firstName')
+            ->get();
+
+        return view('interventions.edit', compact('intervention', 'technicians'));
     }
 
     /**

@@ -14,7 +14,11 @@ class TechStatsController extends Controller
      */
     public function index()
     {
-        return view("techstats.index");
+        $technicians = Technician::join('employees', 'technicians.id', '=', 'employees.id')
+            ->orderBy('employees.firstName')
+            ->get();
+
+        return view("techstats.index", compact('technicians'));
     }
 
     /**

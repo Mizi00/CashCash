@@ -1,7 +1,16 @@
 <div>
     <div class="table-search spaced">
         <label>Show <select wire:model.live="perPage" name="" id=""><option value="10">10</option><option value="25">25</option><option value="50">50</option></select> entries</label>
-        <label>Search:<input type="date" wire:model.live="searchDate" aria-controls="table"><input type="number" placeholder="Registration number" wire:model.live="searchTech" aria-controls="table"></label>
+        <label class="flexed">Search:<input type="date" wire:model.live="searchDate" aria-controls="table">
+            <select wire:model.live="searchTech" class="form-control">
+                <option value="">Registration number</option>
+                @forelse($technicians as $technician)
+                    <option value="{{ $technician->id }}">{{ $technician->id . ' - ' . $technician->employee->firstName . ' ' . $technician->employee->lastName }}</option>
+                @empty
+                    <option value="-1">No technicians available</option>
+                @endforelse
+            </select>
+        </label>
     </div>
     <table>
         <thead>

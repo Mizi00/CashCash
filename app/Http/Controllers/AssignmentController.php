@@ -29,7 +29,12 @@ class AssignmentController extends Controller
      */
     public function edit(Intervention $intervention)
     {
-        return view('assignments.edit', ['intervention' => $intervention]);
+        $technicians = Technician::join('employees', 'technicians.id', '=', 'employees.id')
+            ->where('technicians.agencyNum', '=', $intervention->client->agencyNum)
+            ->orderBy('employees.firstName')
+            ->get();
+
+        return view('assignments.edit', ['intervention' => $intervention, 'technicians' => $technicians]);
     }
 
     /**
