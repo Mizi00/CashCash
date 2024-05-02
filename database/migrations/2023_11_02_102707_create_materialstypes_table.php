@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('materialstypes', function (Blueprint $table) {
             $table->string('internalRef');
             $table->string('label', 255);
+            $table->string('familyCode');
 
             $table->primary('internalRef');
+
+            $table->foreign('familyCode')->references('code')->on('families');
         });
     }
 

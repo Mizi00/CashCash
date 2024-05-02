@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Family;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class MaterialTypeFactory extends Factory
     {
         return [
             'internalRef' => fake()->unique()->regexify('[A-Za-z0-9]{8}'),
-            'label' => fake()->word()
+            'label' => fake()->word(),
+            'familyCode' => Family::inRandomOrder()->pluck('code')->first()
         ];
     }
 }
