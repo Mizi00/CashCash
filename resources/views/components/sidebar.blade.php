@@ -35,6 +35,12 @@
                     <span class="title">Validations</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('chieftechnicians.index') }}" class="{{ Route::is('chieftechnicians.*') ? 'active' : '' }}">
+                    <span class="icon"><i class="fa-solid fa-microchip"></i></span>
+                    <span class="title">Technicians</span>
+                </a>
+            </li>
         @endif
         @if(!auth()->user()->isTechnician()) 
         <li>

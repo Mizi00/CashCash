@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckTechnician
+class CheckChiefTechnician
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,10 @@ class CheckTechnician
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the connected employee is a technician.
-        if (auth()->check() && auth()->user()->isTechnician()) {
+        if (auth()->check() && auth()->user()->isTechnician() && auth()->user()->technician->datePromotion) {
             return $next($request);
-        }        
-
-        // Return an HTTP 403 Forbidden response.
-        abort(403, 'Access denied.');
+        }
+        
+        abort(403);
     }
 }

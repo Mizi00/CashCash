@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('technicians', function (Blueprint $table) {
             $table->unsignedBigInteger('id'); //clé primaire étrangère
             $table->string('qualification', 100);
+            $table->date('datePromotion')->nullable();
             $table->primary('id');
             //clé étrangère
             $table->unsignedBigInteger('agencyNum');

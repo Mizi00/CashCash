@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TechStatsController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\InterventionController;
+use App\Http\Controllers\ChiefTechnicianController;
 use App\Http\Controllers\TechInterventionController;
 
 /*
@@ -56,6 +57,14 @@ Route::middleware('auth')->group(function () {
 
         //Generate a PDF for the provided intervention.
         Route::get('/pdf/{intervention}', 'generatePDF')->name('pdf');
+    });
+
+    Route::prefix('chieftechnicians')->name('chieftechnicians.')->middleware('checkchieftechnician')->controller(ChiefTechnicianController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/show/{technician}', 'show')->name('show');
+        Route::get('/edit/{technician}', 'edit')->name('edit');
+
     });
 
     // Route only allowed for helpers
